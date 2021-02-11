@@ -1,0 +1,3 @@
+include ':CommonAndroidUtility'
+include ':app'
+rootProject.name = "CommonAndroidUtilityProject"
