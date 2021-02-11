@@ -12,5 +12,5 @@ public class DialogUtils {
         new AlertDialog.Builder(context).setMessage(msg).show();
     }
 
-    
+
 }
