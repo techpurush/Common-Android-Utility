@@ -8,8 +8,10 @@ Current Version : 1.0.6
 
 The API includes the below mentioned utility classes for your help:
 
-****************** JAVA UTILITIES *****************
-ActivityUtils.java
+    
+    ****************** JAVA UTILITIES *****************
+    
+    ActivityUtils.java
     
     AnimationUtilsX.java
     
@@ -98,5 +100,4 @@ ActivityUtils.java
     WindowUtilsX.java
     
     ZipUtils.java
-    
-    
+
