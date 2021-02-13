@@ -8,7 +8,7 @@ Current Version : 1.0.6
 
 The API includes the below mentioned utility classes for your help:
 
-********************************************************** JAVA UTILITIES ************************************************************
+****************** JAVA UTILITIES *****************
 ActivityUtils.java
 AnimationUtilsX.java
 AssetDatabaseOpenUtilsX.java
@@ -54,6 +54,3 @@ WakeLockUtils.java
 WebViewUtils.java
 WindowUtilsX.java
 ZipUtils.java
-
-********************************************************** TILL HERE ************************************************************
-
