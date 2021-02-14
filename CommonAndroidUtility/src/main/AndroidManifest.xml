@@ -3,4 +3,9 @@
     package="com.techpurush.commonandroidutility">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application>
+        <activity android:name=".MainActivity"></activity>
+    </application>
+
 </manifest>

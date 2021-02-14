@@ -427,7 +427,5 @@ public class LinkUtils {
         feedback(context, appName, email, ApplicationErrorReport.TYPE_NONE, null);
     }
 
-    public static void tst(Context context, String msg) {
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-    }
+
 }
