@@ -15,8 +15,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.techpurush.commonandroidutility.adapters.RVAdapter;
+
+import java.util.List;
 
 public class DialogUtils {
 
@@ -66,5 +71,33 @@ public class DialogUtils {
         Window window = dialog.getWindow();
         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
+
+    public static void showDialogList(Context context, List<String> data) {
+
+        Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.dialog_list);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        RecyclerView rv = dialog.findViewById(R.id.rvDialog);
+        ImageView ivClose = dialog.findViewById(R.id.ivClose);
+
+        rv.setLayoutManager(new LinearLayoutManager(context));
+
+        rv.setAdapter(new RVAdapter(context, data));
+
+
+        ivClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (dialog != null)
+                    dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+        Window window = dialog.getWindow();
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+    }
+
 
 }
