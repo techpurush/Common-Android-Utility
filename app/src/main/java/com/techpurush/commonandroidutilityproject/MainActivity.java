@@ -26,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        if(!PermissionUtilsX.check(this,Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+        if (!PermissionUtilsX.check(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
 
-            PermissionUtilsX.request(this,Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            //   PermissionUtilsX.request(this,Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
         }
 
@@ -74,5 +74,15 @@ public class MainActivity extends AppCompatActivity {
             // other 'case' lines to check for other
             // permissions this app might request
         }
+    }
+
+    public void open(View view) {
+
+        //DialogUtils.showDialog(this, "Hi, Aditya");
+
+        //DialogUtils.showSnackBar(findViewById(R.id.root),"Hi, Aditya");
+
+        DialogUtils.showRatingBar(this, BuildConfig.APPLICATION_ID);
+
     }
 }
