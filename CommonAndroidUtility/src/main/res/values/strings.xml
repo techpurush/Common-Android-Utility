@@ -1,1 +1,6 @@
-<resources></resources>
+<resources>
+
+    <string name="how_was_your_experience_with_the_app">How was your experience with the app?</string>
+    <string name="do_you_really_want_to_exit">Do you really want to exit?</string>
+
+</resources>

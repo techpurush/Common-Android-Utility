@@ -3,9 +3,15 @@ package com.techpurush.commonandroidutility;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -19,6 +25,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.hsalf.smilerating.BaseRating;
+import com.hsalf.smilerating.SmileRating;
 import com.techpurush.commonandroidutility.adapters.RVAdapter;
 
 import java.util.List;
@@ -32,6 +40,74 @@ public class DialogUtils {
 
     public static void tst(Context context, Object msg) {
         Toast.makeText(context, msg + "", Toast.LENGTH_SHORT).show();
+    }
+
+    public static void openPlay(Context context, String packageName) {
+        final String URL = "https://play.google.com/store/apps/details?id=" + packageName; // getPackageName() from
+        // Context or Activity
+        // object
+        try {
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(URL)));
+        } catch (ActivityNotFoundException anfe) {
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(URL)));
+        }
+    }
+
+
+    public static void showRatingBar(Activity context, String packageName) {
+
+        androidx.appcompat.app.AlertDialog alertBuilder = new androidx.appcompat.app.AlertDialog.Builder(context).create();
+        LayoutInflater factory = LayoutInflater.from(context);
+        final View view = factory.inflate(R.layout.ratebar, null);
+        SmileRating smileRating = (SmileRating) view.findViewById(R.id.smile_rating);
+        String TAG = "TAG";
+        smileRating.setOnSmileySelectionListener(new SmileRating.OnSmileySelectionListener() {
+            @Override
+            public void onSmileySelected(@BaseRating.Smiley int smiley, boolean reselected) {
+                // reselected is false when user selects different smiley that previously selected one
+                // true when the same smiley is selected.
+                // Except if it first time, then the value will be false.
+                switch (smiley) {
+                    case SmileRating.BAD:
+                        Log.i(TAG, "Bad");
+                        Toast.makeText(context, "Thanks for your feedback!!", Toast.LENGTH_SHORT).show();
+                        alertBuilder.dismiss();
+                        break;
+                    case SmileRating.GOOD:
+                        Log.i(TAG, "Good");
+                        openPlay(context, packageName);
+                        break;
+                    case SmileRating.GREAT:
+                        openPlay(context, packageName);
+                        Log.i(TAG, "Great");
+                        break;
+                    case SmileRating.OKAY:
+                        openPlay(context, packageName);
+                        Log.i(TAG, "Okay");
+                        break;
+                    case SmileRating.TERRIBLE:
+                        Log.i(TAG, "Terrible");
+                        Toast.makeText(context, "Thanks for your feedback!!", Toast.LENGTH_SHORT).show();
+                        alertBuilder.dismiss();
+                        break;
+                }
+            }
+        });
+        alertBuilder.setView(view);
+        alertBuilder.setButton(androidx.appcompat.app.AlertDialog.BUTTON_NEGATIVE, "Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                context.finish();
+            }
+        });
+
+        alertBuilder.setButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE, "No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        alertBuilder.show();
     }
 
     public static void showSnackBar(ViewGroup rootLayout, String msg) {
