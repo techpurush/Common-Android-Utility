@@ -94,4 +94,11 @@ public class DatabaseHelperUtils extends SQLiteOpenHelper {
                 new String[]{whereID});
         db.close();
     }
+
+    public void delete(String columnName,String columnValue) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(this.tableName, columnName + " = ?",
+                new String[]{columnValue});
+        db.close();
+    }
 }
