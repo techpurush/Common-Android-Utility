@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 
+import com.techpurush.commonandroidutility.BitmapUtilX;
 import com.techpurush.commonandroidutility.DialogUtils;
 import com.techpurush.commonandroidutility.PermissionUtilsX;
 
@@ -82,7 +83,9 @@ public class MainActivity extends AppCompatActivity {
 
         //DialogUtils.showSnackBar(findViewById(R.id.root),"Hi, Aditya");
 
-        DialogUtils.showRatingBar(this, BuildConfig.APPLICATION_ID);
+        //DialogUtils.showRatingBar(this, BuildConfig.APPLICATION_ID);
 
+        DialogUtils.showDialogWithImage(this, "Hello Aditya",
+                BitmapUtilX.getBitmapFromResource(this, R.drawable.img1));
     }
 }

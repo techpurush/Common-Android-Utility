@@ -58,7 +58,9 @@ public final class BitmapUtilX {
     private static final String TAG = BitmapUtilX.class.getSimpleName();
 
     /**
+     *
      * Don't let anyone instantiate this class.
+     *
      */
     private BitmapUtilX() {
         throw new Error("Do not need instantiate!");
@@ -106,6 +108,14 @@ public final class BitmapUtilX {
         options.inInputShareable = true;
         InputStream is = res.openRawResource(resId);
         return getBitmapFromStream(is, null, reqWidth, reqHeight);
+    }
+
+    @TargetApi(Build.VERSION_CODES.DONUT)
+    public static Bitmap getBitmapFromResource(Context context, int resId) {
+
+        return BitmapFactory.decodeResource(context.getResources(),
+                resId);
+
     }
 
 

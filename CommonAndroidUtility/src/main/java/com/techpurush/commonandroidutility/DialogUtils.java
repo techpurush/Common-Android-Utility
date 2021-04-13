@@ -7,6 +7,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -133,6 +134,33 @@ public class DialogUtils {
         ImageView ivClose = dialog.findViewById(R.id.ivClose);
 
         tv.setText(msg);
+
+        ivClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (dialog != null)
+                    dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+        Window window = dialog.getWindow();
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+    }
+
+    public static void showDialogWithImage(Context context, String msg, Bitmap bitmap) {
+
+        Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.dialog_layout_image);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        TextView tv = dialog.findViewById(R.id.tvMSG);
+        ImageView ivDialog = dialog.findViewById(R.id.ivDialog);
+        ImageView ivClose = dialog.findViewById(R.id.ivClose);
+
+        tv.setText(msg);
+
+        ivDialog.setImageBitmap(bitmap);
 
         ivClose.setOnClickListener(new View.OnClickListener() {
             @Override
