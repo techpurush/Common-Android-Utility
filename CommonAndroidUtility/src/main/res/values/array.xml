@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="colors">
+
+        <item name="category_item_11">#FF0000</item>
+        <item name="category_item_12">#FF8000</item>
+        <item name="category_item_15">#7401DF</item>
+        <item name="category_item_18">#0000FF</item>
+        <item name="category_item_2">#000000</item>
+        <item name="category_item_6">#ffbb4bcc</item>
+        <item name="category_item_8">#ffe23f90</item>
+
+    </array>
+</resources>

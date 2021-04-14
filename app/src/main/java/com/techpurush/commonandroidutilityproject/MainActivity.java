@@ -115,6 +115,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void open(View view) {
 
+        //DialogUtils.showRatingBar(this,getPackageName(),"HIdjhsdgjhs");
+
         //testCode();
 
         //progressDialog = DialogUtils.showProgressDialog(this);

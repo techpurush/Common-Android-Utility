@@ -30,6 +30,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.hsalf.smilerating.BaseRating;
 import com.hsalf.smilerating.SmileRating;
 import com.techpurush.commonandroidutility.adapters.RVAdapter;
+import com.techpurush.commonandroidutility.utils.Constants;
 
 import java.util.List;
 
@@ -56,12 +57,67 @@ public class DialogUtils {
     }
 
 
-    public static void showRatingBar(Activity context, String packageName) {
+    public static void showRatingBar(Activity context,
+                                     String packageName,
+                                     String shareText, @Nullable Uri imageUri) {
 
-        androidx.appcompat.app.AlertDialog alertBuilder = new androidx.appcompat.app.AlertDialog.Builder(context).create();
-        LayoutInflater factory = LayoutInflater.from(context);
-        final View view = factory.inflate(R.layout.ratebar, null);
-        SmileRating smileRating = (SmileRating) view.findViewById(R.id.smile_rating);
+        Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.ratebar);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        TextView tvYes = dialog.findViewById(R.id.tvYes);
+        TextView tvNo = dialog.findViewById(R.id.tvNo);
+
+        ImageView ivShare = dialog.findViewById(R.id.ivShare);
+        ImageView ivShareWA = dialog.findViewById(R.id.ivShareWA);
+        ImageView ivRate = dialog.findViewById(R.id.ivRate);
+
+        ivRate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DialogUtils.openPlay(context, packageName);
+
+            }
+        });
+
+        ivShareWA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Constants.share(context, shareText, null, true);
+
+            }
+        });
+
+        ivShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Constants.share(context, shareText, null, false);
+
+            }
+        });
+
+        tvYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                context.finish();
+
+            }
+        });
+
+        tvNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialog.dismiss();
+
+            }
+        });
+
+        SmileRating smileRating = (SmileRating) dialog.findViewById(R.id.smile_rating);
         String TAG = "TAG";
         smileRating.setOnSmileySelectionListener(new SmileRating.OnSmileySelectionListener() {
             @Override
@@ -73,7 +129,7 @@ public class DialogUtils {
                     case SmileRating.BAD:
                         Log.i(TAG, "Bad");
                         Toast.makeText(context, "Thanks for your feedback!!", Toast.LENGTH_SHORT).show();
-                        alertBuilder.dismiss();
+                        dialog.dismiss();
                         break;
                     case SmileRating.GOOD:
                         Log.i(TAG, "Good");
@@ -90,26 +146,31 @@ public class DialogUtils {
                     case SmileRating.TERRIBLE:
                         Log.i(TAG, "Terrible");
                         Toast.makeText(context, "Thanks for your feedback!!", Toast.LENGTH_SHORT).show();
-                        alertBuilder.dismiss();
+                        dialog.dismiss();
                         break;
                 }
             }
         });
-        alertBuilder.setView(view);
-        alertBuilder.setButton(androidx.appcompat.app.AlertDialog.BUTTON_NEGATIVE, "Yes", new DialogInterface.OnClickListener() {
+
+       /* dialog.setView(view);
+        dialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_NEGATIVE, "Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 context.finish();
             }
         });
 
-        alertBuilder.setButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE, "No", new DialogInterface.OnClickListener() {
+        dialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE, "No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
             }
-        });
-        alertBuilder.show();
+        });*/
+
+
+        dialog.show();
+        Window window = dialog.getWindow();
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
     public static void showSnackBar(ViewGroup rootLayout, String msg) {
