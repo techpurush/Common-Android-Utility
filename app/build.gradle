@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.techpurush.commonandroidutilityproject"
-        minSdkVersion 16
+        minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -38,5 +38,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    compile 'com.kishan.askpermission:askpermission:1.0.3'
 
 }

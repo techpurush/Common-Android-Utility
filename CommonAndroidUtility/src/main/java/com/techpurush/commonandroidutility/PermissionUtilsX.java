@@ -1,55 +1,53 @@
 package com.techpurush.commonandroidutility;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
-import java.util.Arrays;
-
 
 public class PermissionUtilsX {
 
-    private static final int PERMISSION_REQUEST_CODE = 111;
 
-    public static void request(Context context, String permission) {
-
-        if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
-
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context,
-                    permission)) {
-
-                // Show an expanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-
-                //DialogUtils.tst(context, "IN SHOULD SHOW RATIONALE");
-
-            } else {
-
-                // No explanation needed, we can request the permission.
-
-                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
-            }
-            ActivityCompat.requestPermissions((Activity) context,
-                    new String[]{permission},
-                    PERMISSION_REQUEST_CODE);
-
-            return;
-        } else {
+    private PermissionGrantedOrDeniedInterface callback;
+    private String[] permission;
+    private Activity context;
 
 
-            DialogUtils.tst(context, "ALREADY GRANTED");
+    public static PermissionUtilsX request(Activity context, String... permission) {
 
-        }
+        PermissionUtilsX permissionUtilsX = new PermissionUtilsX();
+        permissionUtilsX.permission = permission;
+        permissionUtilsX.context = context;
+
+        return permissionUtilsX;
     }
+
+
+    /**
+     * @param callback as PermissionGrantedOrDeniedInterface implementation.
+     * @return PermissionUtilsX
+     */
+    public PermissionUtilsX withPermissionGrantListener(PermissionGrantedOrDeniedInterface callback) {
+
+        this.callback = callback;
+
+        return this;
+
+    }
+
+    public void build() {
+
+        PermissionRequesterFrag permissionRequesterFrag = PermissionRequesterFrag.getInstance(callback, context, permission);
+
+        context.getFragmentManager().beginTransaction().add(permissionRequesterFrag, "frag").commit();
+
+
+    }
+
+
+    public static final int PERMISSION_REQUEST_CODE = 111;
+
 
     public static boolean check(Context context, String permission) {
 
@@ -58,6 +56,7 @@ public class PermissionUtilsX {
         else
             return true;
     }
+
 
    /* @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

@@ -3,6 +3,7 @@ package com.techpurush.commonandroidutility;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,7 +17,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +25,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 import com.hsalf.smilerating.BaseRating;
 import com.hsalf.smilerating.SmileRating;
@@ -125,6 +126,35 @@ public class DialogUtils {
         }).show();
     }
 
+    public static void showYesNoDialog(Context context, String msg, YesOrNoInterface callback) {
+
+        AlertDialog.Builder builder =
+                new AlertDialog.Builder(context);
+
+        builder.setMessage(msg);
+        builder.setCancelable(false);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                callback.isYesOrNo(true);
+
+
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                callback.isYesOrNo(false);
+
+
+            }
+        }).show();
+
+
+    }
+
     public static void showDialog(Context context, String msg) {
 
         Dialog dialog = new Dialog(context);
@@ -201,6 +231,15 @@ public class DialogUtils {
         dialog.show();
         Window window = dialog.getWindow();
         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+    }
+
+    public static ProgressDialog showProgressDialog(Context context) {
+
+        ProgressDialog progressDialog = new ProgressDialog(context, R.style.dialogStyle);
+
+        progressDialog.show();
+
+        return progressDialog;
     }
 
 
