@@ -85,7 +85,7 @@ public class DialogUtils {
             @Override
             public void onClick(View v) {
 
-                Constants.share(context, shareText, null, true);
+                Constants.share(context, shareText, imageUri, true);
 
             }
         });
@@ -94,7 +94,7 @@ public class DialogUtils {
             @Override
             public void onClick(View v) {
 
-                Constants.share(context, shareText, null, false);
+                Constants.share(context, shareText, imageUri, false);
 
             }
         });
