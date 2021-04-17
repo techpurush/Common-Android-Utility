@@ -13,7 +13,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -25,11 +24,10 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 import com.hsalf.smilerating.BaseRating;
 import com.hsalf.smilerating.SmileRating;
-import com.techpurush.commonandroidutility.adapters.RVAdapter;
+import com.techpurush.commonandroidutility.adapters.SingleItemAdapter;
 import com.techpurush.commonandroidutility.utils.Constants;
 
 import java.util.List;
@@ -221,7 +219,7 @@ public class DialogUtils {
         Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.dialog_layout1);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        TextView tv = dialog.findViewById(R.id.tvMSG);
+        TextView tv = dialog.findViewById(R.id.tvTwoRowsTitle);
         ImageView ivClose = dialog.findViewById(R.id.ivClose);
 
         tv.setText(msg);
@@ -245,7 +243,7 @@ public class DialogUtils {
         Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.dialog_layout_image);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        TextView tv = dialog.findViewById(R.id.tvMSG);
+        TextView tv = dialog.findViewById(R.id.tvTwoRowsTitle);
         ImageView ivDialog = dialog.findViewById(R.id.ivDialog);
         ImageView ivClose = dialog.findViewById(R.id.ivClose);
 
@@ -277,7 +275,7 @@ public class DialogUtils {
 
         rv.setLayoutManager(new LinearLayoutManager(context));
 
-        rv.setAdapter(new RVAdapter(context, data));
+        rv.setAdapter(new SingleItemAdapter(context, data));
 
 
         ivClose.setOnClickListener(new View.OnClickListener() {

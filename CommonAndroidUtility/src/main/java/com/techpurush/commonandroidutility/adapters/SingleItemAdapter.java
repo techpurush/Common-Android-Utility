@@ -15,11 +15,11 @@ import com.techpurush.commonandroidutility.R;
 import java.util.List;
 
 
-public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
+public class SingleItemAdapter extends RecyclerView.Adapter<SingleItemAdapter.ViewHolder> {
     Context context;
     List<String> data;
 
-    public RVAdapter(Context context, List<String> data) {
+    public SingleItemAdapter(Context context, List<String> data) {
         this.context = context;
         this.data = data;
     }
@@ -98,7 +98,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
 
         public ViewHolder(View itemView) {
             super(itemView);
-            tv = itemView.findViewById(R.id.tvMSG);
+            tv = itemView.findViewById(R.id.tvTwoRowsTitle);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

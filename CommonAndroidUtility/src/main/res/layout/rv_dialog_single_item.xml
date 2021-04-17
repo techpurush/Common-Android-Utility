@@ -22,7 +22,7 @@
             android:background="#FFFFFF">
 
             <TextView
-                android:id="@+id/tvMSG"
+                android:id="@+id/tvTwoRowsTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/aclonica"
