@@ -1,5 +1,6 @@
 package com.techpurush.commonandroidutility;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -13,8 +14,13 @@ public class PermissionUtilsX {
     private String[] permission;
     private Activity context;
 
+    public static final String READ_EXTERNAL_STORAGE=Manifest.permission.READ_EXTERNAL_STORAGE;
+    public static final String WRITE_EXTERNAL_STORAGE=Manifest.permission.WRITE_EXTERNAL_STORAGE;
+    public static final String CAMERA=Manifest.permission.CAMERA;
+    public static final String READ_CONTACTS=Manifest.permission.READ_CONTACTS;
+    public static final String WRITE_CONTACTS=Manifest.permission.WRITE_CONTACTS;
 
-    public static PermissionUtilsX request(Activity context, String... permission) {
+    public static PermissionUtilsX Builder(Activity context, String... permission) {
 
         PermissionUtilsX permissionUtilsX = new PermissionUtilsX();
         permissionUtilsX.permission = permission;
@@ -28,15 +34,9 @@ public class PermissionUtilsX {
      * @param callback as PermissionGrantedOrDeniedInterface implementation.
      * @return PermissionUtilsX
      */
-    public PermissionUtilsX withPermissionGrantListener(PermissionGrantedOrDeniedInterface callback) {
+    public void requestWithListener(PermissionGrantedOrDeniedInterface callback) {
 
         this.callback = callback;
-
-        return this;
-
-    }
-
-    public void build() {
 
         PermissionRequesterFrag permissionRequesterFrag = PermissionRequesterFrag.getInstance(callback, context, permission);
 

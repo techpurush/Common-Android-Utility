@@ -10,6 +10,8 @@ import android.os.Handler;
 import android.view.View;
 
 import com.techpurush.commonandroidutility.DialogUtils;
+import com.techpurush.commonandroidutility.FilePickerUtils;
+import com.techpurush.commonandroidutility.GetPickedFile;
 import com.techpurush.commonandroidutility.LogUtilsX;
 import com.techpurush.commonandroidutility.PermissionGrantedOrDeniedInterface;
 import com.techpurush.commonandroidutility.PermissionUtilsX;
@@ -40,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void askForPermission() {
         PermissionUtilsX
-                .request(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                .withPermissionGrantListener(new PermissionGrantedOrDeniedInterface() {
+                .Builder(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .requestWithListener(new PermissionGrantedOrDeniedInterface() {
                     @Override
                     public void granted(String... permissions) {
 
@@ -65,8 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                     }
-                })
-                .build();
+                });
     }
 
     /*   @Override
@@ -120,6 +121,45 @@ public class MainActivity extends AppCompatActivity {
         //testCode();
 
         //progressDialog = DialogUtils.showProgressDialog(this);
+
+       /* ImagePickerUtils.Builder(this).pickWithListener(new GetPickedImage() {
+            @Override
+            public void pickedImage(Bitmap bitmap) {
+                ImageView iv = findViewById(R.id.imageView);
+
+                iv.setImageBitmap(bitmap);
+
+            }
+        });*/
+
+        PermissionUtilsX.Builder(this, PermissionUtilsX.WRITE_EXTERNAL_STORAGE)
+                .requestWithListener(new PermissionGrantedOrDeniedInterface() {
+                    @Override
+                    public void granted(String... permissions) {
+
+                        FilePickerUtils.Builder(getContext()).pickWithListener(new GetPickedFile() {
+                            @Override
+                            public void pickedFile(String filePath) {
+
+                                DialogUtils.tst(getContext(), "Picked single file: " + filePath);
+                            }
+
+                            @Override
+                            public void pickedFiles(String[] filePaths) {
+
+                                DialogUtils.tst(getContext(), "Picked multiple files: " + Arrays.toString(filePaths));
+
+                            }
+                        });
+
+                    }
+
+                    @Override
+                    public void denied(String... permissions) {
+
+                    }
+                });
+
 
 
 
