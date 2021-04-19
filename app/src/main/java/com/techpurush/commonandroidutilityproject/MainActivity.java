@@ -10,11 +10,6 @@ import android.os.Handler;
 import android.view.View;
 
 import com.techpurush.commonandroidutility.DialogUtils;
-import com.techpurush.commonandroidutility.FilePickerUtils;
-import com.techpurush.commonandroidutility.GetPickedFile;
-import com.techpurush.commonandroidutility.LogUtilsX;
-import com.techpurush.commonandroidutility.PermissionGrantedOrDeniedInterface;
-import com.techpurush.commonandroidutility.PermissionUtilsX;
 
 import java.util.Arrays;
 
@@ -29,26 +24,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        if (!PermissionUtilsX.check(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+      /*  if (!PermissionUtilsX.check(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
 
             //   PermissionUtilsX.request(this,Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
-        }
+        }*/
 
-        askForPermission();
+        //askForPermission();
 
 
     }
 
-    private void askForPermission() {
+   /* private void askForPermission() {
         PermissionUtilsX
                 .Builder(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .requestWithListener(new PermissionGrantedOrDeniedInterface() {
                     @Override
                     public void granted(String... permissions) {
 
-                      /*  DialogUtils.tst(getContext(), "Granted: " + permissions.length+"\n"+
-                                permissions[0]);*/
+                      *//*  DialogUtils.tst(getContext(), "Granted: " + permissions.length+"\n"+
+                                permissions[0]);*//*
 
 
                         LogUtilsX.d("Permission: ", "Granted: " + permissions.length + "\n" +
@@ -69,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-
+*/
     /*   @Override
        public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -132,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
 
-        PermissionUtilsX.Builder(this, PermissionUtilsX.WRITE_EXTERNAL_STORAGE)
+   /*     PermissionUtilsX.Builder(this, PermissionUtilsX.WRITE_EXTERNAL_STORAGE)
                 .requestWithListener(new PermissionGrantedOrDeniedInterface() {
                     @Override
                     public void granted(String... permissions) {
@@ -160,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-
+*/
 
 
 
