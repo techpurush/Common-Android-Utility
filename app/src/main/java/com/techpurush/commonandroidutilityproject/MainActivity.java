@@ -131,7 +131,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void open(View view) {
 
-        Bitmap bitmap = ((BitmapDrawable) getContext().getResources().getDrawable(R.drawable.notification_pic)).getBitmap();
+        Bitmap bitmap = ((BitmapDrawable) getContext().getResources().getDrawable(R.drawable.big_picture)).getBitmap();
+        Bitmap bitmap2 = ((BitmapDrawable) getContext().getResources().getDrawable(R.drawable.logo)).getBitmap();
 
       /*  new QuickNotification()
                 .addNotificationBigTextStyle(getContext(), "Title", "Body")
@@ -141,12 +142,26 @@ public class MainActivity extends AppCompatActivity {
                 .setSubText("SubText")
                 .show();*/
 
-        new QuickNotification()
-                .addNotificationBigPictureStyle(getContext(), "Title", "Body", bitmap)
-                .setIcon(R.drawable.notification_pic)
-                .setImagePosition(true)
+       /* new QuickNotification.BigPictureBuilder()
+                .addNotificationBigPictureStyle(getContext(), "Title", "Body")
+                .setSmallPicture(bitmap2)
+                .setBigPicture(bitmap)
+                .setSmallPicturePosition(QuickNotification.SMALL_IMAGE_POSITION_RIGHT)
+                .setIcon(R.drawable.tap)
                 .setContentIntent(new Intent(getContext(), MainActivity.class))
                 .setSubText("SubText")
+                .show();*/
+
+        new QuickNotification.BigTextBuilder()
+                .addNotificationBigTextStyle(getContext(), "Title", "Body")
+                .setSmallPicture(bitmap2)
+                .setSmallPicturePosition(QuickNotification.SMALL_IMAGE_POSITION_RIGHT)
+                .setIcon(R.drawable.tap)
+                .setContentIntent(new Intent(getContext(), MainActivity.class))
+                .setSubText("SubText")
+                .setBigText("sdbfgvhsbdhaf sdbfsdhbjsbfgd" +
+                        "dfgndfkjgfdjks" +
+                        "dsgnsdfjkgbsdjk")
                 .show();
 
 

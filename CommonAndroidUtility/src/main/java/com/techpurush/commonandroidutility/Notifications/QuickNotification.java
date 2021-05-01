@@ -1,6 +1,5 @@
 package com.techpurush.commonandroidutility.Notifications;
 
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -8,7 +7,6 @@ import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.widget.RemoteViews;
 
 import androidx.core.app.NotificationCompat;
@@ -17,130 +15,269 @@ import com.techpurush.commonandroidutility.R;
 
 public class QuickNotification {
 
+    public static int SMALL_IMAGE_POSITION_LEFT = 1;
 
-    static int notificationId = 200;
-    static String channelId = "channel-01";
-    static String channelName = "Channel Name";
+    public static int SMALL_IMAGE_POSITION_RIGHT = 2;
 
-    NotificationManager notificationManager;
+    public static class BigPictureBuilder {
 
-    NotificationCompat.Builder builder;
+        private int notificationId = 200;
+        private String channelId = "channel-01";
+        private String channelName = "Channel Name";
 
-    private Context context;
+        private NotificationManager notificationManager;
 
-    String title, body;
+        private NotificationCompat.Builder builder;
 
-    public QuickNotification setIcon(int imageIconResource) {
+        private Context context;
 
-        builder.setSmallIcon(imageIconResource);
+        private String title, body;
 
-        return this;
-    }
+        private RemoteViews collapsedView;
 
-    public QuickNotification setSubText(String subText) {
-
-        builder.setSubText(subText);
-
-        return this;
-    }
-
-    public QuickNotification setImagePosition(boolean isLeft) {
-
-        RemoteViews collapsedView;
-
-        if (isLeft)
-            collapsedView = new RemoteViews(context.getPackageName(),
-                    R.layout.notification_small_image_on_left);
-        else
-            collapsedView = new RemoteViews(context.getPackageName(),
-                    R.layout.notification_small);
-
-        collapsedView.setTextViewText(R.id.textView2, title);
-        collapsedView.setTextViewText(R.id.textView3, body);
-
-        builder.setCustomContentView(collapsedView);
-
-        return this;
-    }
-
-    public QuickNotification setContentIntent(Intent intent) {
-
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-        stackBuilder.addNextIntent(intent);
-        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
-                0,
-                PendingIntent.FLAG_CANCEL_CURRENT
-        );
-
-        builder.setContentIntent(resultPendingIntent);
-
-        return this;
-    }
-
-    public void show() {
-
-        notificationManager.notify(notificationId, builder.build());
+        private Bitmap smallPicture;
+        private Bitmap bigPicture;
 
 
-    }
+        private int smallPicturePosition = 1;
 
+        public BigPictureBuilder setIcon(int imageIconResource) {
 
-    public QuickNotification addNotificationBigTextStyle(Context context, String title, String body) {
+            builder.setSmallIcon(imageIconResource);
 
-        this.context = context;
-        this.title = title;
-        this.body = body;
-
-        notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel mChannel = new NotificationChannel(
-                    channelId, channelName, importance);
-            mChannel.setLockscreenVisibility(NotificationCompat.VISIBILITY_PUBLIC);
-            notificationManager.createNotificationChannel(mChannel);
+            return this;
         }
 
-        builder = new NotificationCompat.Builder(context, channelId)
-                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .setStyle(new NotificationCompat.BigTextStyle().setBigContentTitle(title).setSummaryText("Summary")
-                        .bigText(body))
-                .setAutoCancel(true)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setContentTitle(title);
 
-        return this;
-    }
+        public BigPictureBuilder setSubText(String subText) {
 
-    public QuickNotification addNotificationBigPictureStyle(Context context, String title, String body, Bitmap bigPicture) {
+            builder.setSubText(subText);
 
-        this.context = context;
-        this.title = title;
-        this.body = body;
-
-        notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel mChannel = new NotificationChannel(
-                    channelId, channelName, importance);
-            mChannel.setLockscreenVisibility(NotificationCompat.VISIBILITY_PUBLIC);
-            notificationManager.createNotificationChannel(mChannel);
+            return this;
         }
 
-        builder = new NotificationCompat.Builder(context, channelId)
-                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(bigPicture).setBigContentTitle(title)
-                        .setSummaryText(body))
-                .setAutoCancel(true)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setContentTitle(title);
 
-        return this;
+        public BigPictureBuilder setContentIntent(Intent intent) {
+
+            TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+            stackBuilder.addNextIntent(intent);
+            PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
+                    0,
+                    PendingIntent.FLAG_CANCEL_CURRENT
+            );
+
+            builder.setContentIntent(resultPendingIntent);
+
+            return this;
+        }
+
+        public BigPictureBuilder setSmallPicture(Bitmap smallPicture) {
+
+            this.smallPicture = smallPicture;
+
+            return this;
+        }
+
+        public BigPictureBuilder setBigPicture(Bitmap bigPicture) {
+
+
+            this.bigPicture = bigPicture;
+
+
+            return this;
+        }
+
+        public BigPictureBuilder setSmallPicturePosition(int smallPicturePosition) {
+
+
+            this.smallPicturePosition = smallPicturePosition;
+
+
+            return this;
+        }
+
+        public void show() {
+
+            if (smallPicturePosition == SMALL_IMAGE_POSITION_LEFT)
+                collapsedView = new RemoteViews(context.getPackageName(),
+                        R.layout.notification_small_image_on_left);
+            else
+                collapsedView = new RemoteViews(context.getPackageName(),
+                        R.layout.notification_small);
+
+            collapsedView.setTextViewText(R.id.textView2, title);
+            collapsedView.setTextViewText(R.id.textView3, body);
+            collapsedView.setImageViewBitmap(R.id.imageView2, smallPicture);
+
+            builder.setStyle(new NotificationCompat.BigPictureStyle().bigPicture(bigPicture).setBigContentTitle(title)
+                    .setSummaryText(body))
+                    .setCustomContentView(collapsedView);
+
+            notificationManager.notify(notificationId, builder.build());
+
+
+        }
+
+        public BigPictureBuilder addNotificationBigPictureStyle(Context context, String title, String body) {
+
+            this.context = context;
+            this.title = title;
+            this.body = body;
+
+
+            notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                int importance = NotificationManager.IMPORTANCE_HIGH;
+                NotificationChannel mChannel = new NotificationChannel(
+                        channelId, channelName, importance);
+                mChannel.setLockscreenVisibility(NotificationCompat.VISIBILITY_PUBLIC);
+                notificationManager.createNotificationChannel(mChannel);
+            }
+
+
+            builder = new NotificationCompat.Builder(context, channelId)
+                    .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                    .setAutoCancel(true)
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    .setContentTitle(title);
+
+            return this;
+        }
+
     }
 
+    public static class BigTextBuilder {
+
+        private int notificationId = 202;
+        private String channelId = "channel-02";
+        private String channelName = "Channel Name2";
+
+        private NotificationManager notificationManager;
+
+        private NotificationCompat.Builder builder;
+
+        private Context context;
+
+        private String title, body;
+
+        private RemoteViews collapsedView;
+
+        private Bitmap smallPicture;
+        private String bigText;
+
+        public static int SMALL_IMAGE_POSITION_LEFT = 1;
+
+        public static int SMALL_IMAGE_POSITION_RIGHT = 2;
+
+        private int smallPicturePosition = 1;
+
+        public BigTextBuilder setIcon(int imageIconResource) {
+
+            builder.setSmallIcon(imageIconResource);
+
+            return this;
+        }
+
+
+        public BigTextBuilder setSubText(String subText) {
+
+            builder.setSubText(subText);
+
+            return this;
+        }
+
+
+        public BigTextBuilder setContentIntent(Intent intent) {
+
+            TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+            stackBuilder.addNextIntent(intent);
+            PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
+                    0,
+                    PendingIntent.FLAG_CANCEL_CURRENT
+            );
+
+            builder.setContentIntent(resultPendingIntent);
+
+            return this;
+        }
+
+        public BigTextBuilder setSmallPicture(Bitmap smallPicture) {
+
+            this.smallPicture = smallPicture;
+
+            return this;
+        }
+
+        public BigTextBuilder setBigText(String bigText) {
+
+            this.bigText = bigText;
+
+            return this;
+        }
+
+
+        public BigTextBuilder setSmallPicturePosition(int smallPicturePosition) {
+
+
+            this.smallPicturePosition = smallPicturePosition;
+
+
+            return this;
+        }
+
+        public void show() {
+
+            if (smallPicturePosition == SMALL_IMAGE_POSITION_LEFT)
+                collapsedView = new RemoteViews(context.getPackageName(),
+                        R.layout.notification_small_image_on_left);
+            else
+                collapsedView = new RemoteViews(context.getPackageName(),
+                        R.layout.notification_small);
+
+            collapsedView.setTextViewText(R.id.textView2, title);
+            collapsedView.setTextViewText(R.id.textView3, body);
+            collapsedView.setImageViewBitmap(R.id.imageView2, smallPicture);
+
+            builder.setStyle(new NotificationCompat.BigTextStyle().setBigContentTitle(title)
+                    .bigText(bigText))
+                    .setCustomContentView(collapsedView);
+
+            notificationManager.notify(notificationId, builder.build());
+
+
+        }
+
+
+        public BigTextBuilder addNotificationBigTextStyle(Context context, String title, String body) {
+
+            this.context = context;
+            this.title = title;
+            this.body = body;
+
+            notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                int importance = NotificationManager.IMPORTANCE_HIGH;
+                NotificationChannel mChannel = new NotificationChannel(
+                        channelId, channelName, importance);
+                mChannel.setLockscreenVisibility(NotificationCompat.VISIBILITY_PUBLIC);
+                notificationManager.createNotificationChannel(mChannel);
+            }
+
+
+            builder = new NotificationCompat.Builder(context, channelId)
+                    .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                    .setAutoCancel(true)
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    .setContentTitle(title);
+
+            return this;
+        }
+
+    }
 
 }
 
