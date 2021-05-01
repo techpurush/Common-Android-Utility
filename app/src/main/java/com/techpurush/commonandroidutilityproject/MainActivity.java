@@ -58,12 +58,11 @@ public class MainActivity extends AppCompatActivity {
                 .setSubText("SubText")
                 .show();*/
 
-        new QuickNotification.BigPictureBuilder()
-                .addNotificationBigPictureStyle(getContext(), "Title", "Body")
+        new QuickNotification.WithoutExpansionBuilder()
+                .addNotificationWithoutExpansion(getContext(), "Title", "Body")
                 .setSmallPicture(bitmap2)
-                .setBigPicture(bitmap)
                 .setContentTitle("This is a custom content title for big image")
-                .setSmallPicturePosition(QuickNotification.SMALL_IMAGE_POSITION_RIGHT)
+                .setSmallPicturePosition(QuickNotification.SMALL_IMAGE_POSITION_LEFT)
                 .setIcon(R.drawable.tap)
                 .setContentIntent(new Intent(getContext(), MainActivity.class))
                 .setSubText("SubText")

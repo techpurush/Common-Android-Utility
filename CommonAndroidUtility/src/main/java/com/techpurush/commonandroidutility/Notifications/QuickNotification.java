@@ -295,6 +295,137 @@ public class QuickNotification {
 
     }
 
+
+    public static class WithoutExpansionBuilder {
+
+        private int notificationId = 202;
+        private String channelId = "channel-02";
+        private String channelName = "Channel Name2";
+
+        private NotificationManager notificationManager;
+
+        private NotificationCompat.Builder builder;
+
+        private Context context;
+
+        private String title, body, contentTitle;
+
+        private RemoteViews collapsedView;
+
+        private Bitmap smallPicture;
+        private String bigText;
+
+        public static int SMALL_IMAGE_POSITION_LEFT = 1;
+
+        public static int SMALL_IMAGE_POSITION_RIGHT = 2;
+
+        private int smallPicturePosition = 1;
+
+        public WithoutExpansionBuilder setIcon(int imageIconResource) {
+
+            builder.setSmallIcon(imageIconResource);
+
+            return this;
+        }
+
+
+        public WithoutExpansionBuilder setSubText(String subText) {
+
+            builder.setSubText(subText);
+
+            return this;
+        }
+
+
+        public WithoutExpansionBuilder setContentIntent(Intent intent) {
+
+            TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+            stackBuilder.addNextIntent(intent);
+            PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
+                    0,
+                    PendingIntent.FLAG_CANCEL_CURRENT
+            );
+
+            builder.setContentIntent(resultPendingIntent);
+
+            return this;
+        }
+
+
+        public WithoutExpansionBuilder setContentTitle(String contentTitle) {
+
+            this.contentTitle = contentTitle;
+
+            return this;
+        }
+
+        public WithoutExpansionBuilder setSmallPicture(Bitmap smallPicture) {
+
+            this.smallPicture = smallPicture;
+
+            return this;
+        }
+
+
+        public WithoutExpansionBuilder setSmallPicturePosition(int smallPicturePosition) {
+
+
+            this.smallPicturePosition = smallPicturePosition;
+
+
+            return this;
+        }
+
+        public void show() {
+
+            if (smallPicturePosition == SMALL_IMAGE_POSITION_LEFT)
+                collapsedView = new RemoteViews(context.getPackageName(),
+                        R.layout.notification_small_image_on_left);
+            else
+                collapsedView = new RemoteViews(context.getPackageName(),
+                        R.layout.notification_small);
+
+            collapsedView.setTextViewText(R.id.textView2, title);
+            collapsedView.setTextViewText(R.id.textView3, body);
+            collapsedView.setImageViewBitmap(R.id.imageView2, smallPicture);
+
+            builder.setContentTitle(contentTitle)
+                    .setCustomContentView(collapsedView);
+
+            notificationManager.notify(notificationId, builder.build());
+
+
+        }
+
+
+        public WithoutExpansionBuilder addNotificationWithoutExpansion(Context context, String title, String body) {
+
+            this.context = context;
+            this.title = title;
+            this.body = body;
+
+            notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                int importance = NotificationManager.IMPORTANCE_HIGH;
+                NotificationChannel mChannel = new NotificationChannel(
+                        channelId, channelName, importance);
+                mChannel.setLockscreenVisibility(NotificationCompat.VISIBILITY_PUBLIC);
+                notificationManager.createNotificationChannel(mChannel);
+            }
+
+
+            builder = new NotificationCompat.Builder(context, channelId)
+                    .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                    .setAutoCancel(true)
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+            return this;
+        }
+
+    }
+
 }
 
 
