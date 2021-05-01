@@ -5,11 +5,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
+import com.techpurush.commonandroidutility.DateTimePicker.DatePickedInterface;
+import com.techpurush.commonandroidutility.DateTimePicker.DatePicker;
+import com.techpurush.commonandroidutility.DateTimePicker.TimeEllapsedInterface;
+import com.techpurush.commonandroidutility.DateTimePicker.TimePickedInterface;
+import com.techpurush.commonandroidutility.DateTimePicker.TimePicker;
+import com.techpurush.commonandroidutility.DateTimePicker.Timer;
 import com.techpurush.commonandroidutility.DialogUtils;
+import com.techpurush.commonandroidutility.Notifications.QuickNotification;
 
 import java.util.Arrays;
 
@@ -33,6 +43,16 @@ public class MainActivity extends AppCompatActivity {
         //askForPermission();
 
 
+    }
+
+    private void checkDatePicker() {
+
+        DatePicker.showDatePicker(this, new DatePickedInterface() {
+            @Override
+            public void pickedDate(String day, String month, String year) {
+                DialogUtils.tst(getContext(), day + " - " + month + " - " + year);
+            }
+        });
     }
 
    /* private void askForPermission() {
@@ -110,6 +130,31 @@ public class MainActivity extends AppCompatActivity {
     ProgressDialog progressDialog = null;
 
     public void open(View view) {
+
+        Bitmap bitmap = ((BitmapDrawable) getContext().getResources().getDrawable(R.drawable.notification_pic)).getBitmap();
+
+      /*  new QuickNotification()
+                .addNotificationBigTextStyle(getContext(), "Title", "Body")
+                .setIcon(R.drawable.notification_pic)
+                .setImagePosition(true)
+                .setContentIntent(new Intent(getContext(), MainActivity.class))
+                .setSubText("SubText")
+                .show();*/
+
+        new QuickNotification()
+                .addNotificationBigPictureStyle(getContext(), "Title", "Body", bitmap)
+                .setIcon(R.drawable.notification_pic)
+                .setImagePosition(true)
+                .setContentIntent(new Intent(getContext(), MainActivity.class))
+                .setSubText("SubText")
+                .show();
+
+
+        //checkDatePicker();
+
+        //checkTimePicker();
+
+        //checkTimer();
 
         //DialogUtils.showRatingBar(this,getPackageName(),"HIdjhsdgjhs");
 
@@ -191,6 +236,28 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .request(101);*/
 
+    }
+
+    private void checkTimer() {
+
+        Timer.showTimer(getContext(), new TimeEllapsedInterface() {
+            @Override
+            public void ellapsedTime(String ellapseTime) {
+
+                DialogUtils.tst(getContext(), ellapseTime);
+            }
+        });
+    }
+
+    private void checkTimePicker() {
+
+        TimePicker.showTimePicker(getContext(), new TimePickedInterface() {
+            @Override
+            public void pickedTime(String hour, String minute) {
+
+                DialogUtils.tst(getContext(), hour + ":" + minute);
+            }
+        });
     }
 
     private void testCode() {

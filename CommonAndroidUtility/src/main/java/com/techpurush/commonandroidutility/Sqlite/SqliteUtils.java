@@ -1,4 +1,4 @@
-package com.techpurush.commonandroidutility.sqlite;
+package com.techpurush.commonandroidutility.Sqlite;
 
 import android.content.Context;
 

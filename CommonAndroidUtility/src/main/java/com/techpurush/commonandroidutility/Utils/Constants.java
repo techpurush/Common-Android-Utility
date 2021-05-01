@@ -1,25 +1,16 @@
-package com.techpurush.commonandroidutility.utils;
+package com.techpurush.commonandroidutility.Utils;
 
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.net.Uri;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.FileProvider;
 
-import com.techpurush.commonandroidutility.BitmapUtilX;
 import com.techpurush.commonandroidutility.R;
-import com.techpurush.commonandroidutility.sqlite.DatabaseHelperUtils;
-import com.techpurush.commonandroidutility.sqlite.SqliteUtils;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import com.techpurush.commonandroidutility.Sqlite.DatabaseHelperUtils;
+import com.techpurush.commonandroidutility.Sqlite.SqliteUtils;
 
 
 public class Constants {

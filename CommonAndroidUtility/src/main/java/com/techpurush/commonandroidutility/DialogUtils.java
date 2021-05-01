@@ -27,8 +27,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.snackbar.Snackbar;
 import com.hsalf.smilerating.BaseRating;
 import com.hsalf.smilerating.SmileRating;
-import com.techpurush.commonandroidutility.adapters.SingleItemAdapter;
-import com.techpurush.commonandroidutility.utils.Constants;
+import com.techpurush.commonandroidutility.Adapters.SingleItemAdapter;
+import com.techpurush.commonandroidutility.Utils.Constants;
 
 import java.util.List;
 

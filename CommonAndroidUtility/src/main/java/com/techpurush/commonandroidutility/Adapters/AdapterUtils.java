@@ -1,4 +1,4 @@
-package com.techpurush.commonandroidutility.adapters;
+package com.techpurush.commonandroidutility.Adapters;
 
 import android.content.Context;
 

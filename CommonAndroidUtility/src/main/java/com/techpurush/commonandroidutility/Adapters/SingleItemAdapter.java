@@ -1,4 +1,4 @@
-package com.techpurush.commonandroidutility.adapters;
+package com.techpurush.commonandroidutility.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,14 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.techpurush.commonandroidutility.R;
 
-import java.util.Map;
+import java.util.List;
 
 
-public class TwoItemsAdapter extends RecyclerView.Adapter<TwoItemsAdapter.ViewHolder> {
+public class SingleItemAdapter extends RecyclerView.Adapter<SingleItemAdapter.ViewHolder> {
     Context context;
-    Map<String, String> data;
+    List<String> data;
 
-    public TwoItemsAdapter(Context context, Map<String, String> data) {
+    public SingleItemAdapter(Context context, List<String> data) {
         this.context = context;
         this.data = data;
     }
@@ -54,7 +54,7 @@ public class TwoItemsAdapter extends RecyclerView.Adapter<TwoItemsAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View v = LayoutInflater.from(context).inflate(R.layout.rv_dialog_two_item, parent, false);
+        View v = LayoutInflater.from(context).inflate(R.layout.rv_dialog_single_item, parent, false);
 
         return new ViewHolder(v);
     }
@@ -65,12 +65,7 @@ public class TwoItemsAdapter extends RecyclerView.Adapter<TwoItemsAdapter.ViewHo
         //Assign your views here !
 
         //eg :- holder.tv.setText("Hi");
-
-
-        holder.title.setText(data.keySet().toArray(new String[]{})[position]);
-        holder.description.setText(data.values().toArray(new String[]{})[position]);
-
-
+        holder.tv.setText(data.get(position).toString());
     }
 
     public void delete(int pos) {
@@ -97,15 +92,13 @@ public class TwoItemsAdapter extends RecyclerView.Adapter<TwoItemsAdapter.ViewHo
         /*ImageView img;
         TextView title, by;
         CardView cardView;*/
-        TextView title;
-        TextView description;
+        TextView tv;
         CardView cv;
         //Declare your views here!
 
         public ViewHolder(View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.tvTwoRowsTitle);
-            description = itemView.findViewById(R.id.tvTwoRowsDescription);
+            tv = itemView.findViewById(R.id.tvTwoRowsTitle);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
