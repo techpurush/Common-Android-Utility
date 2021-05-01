@@ -31,7 +31,7 @@ public class QuickNotification {
 
         private Context context;
 
-        private String title, body;
+        private String title, body, contentTitle;
 
         private RemoteViews collapsedView;
 
@@ -78,6 +78,13 @@ public class QuickNotification {
             return this;
         }
 
+        public BigPictureBuilder setContentTitle(String contentTitle) {
+
+            this.contentTitle = contentTitle;
+
+            return this;
+        }
+
         public BigPictureBuilder setBigPicture(Bitmap bigPicture) {
 
 
@@ -111,6 +118,7 @@ public class QuickNotification {
 
             builder.setStyle(new NotificationCompat.BigPictureStyle().bigPicture(bigPicture).setBigContentTitle(title)
                     .setSummaryText(body))
+                    .setContentTitle(contentTitle)
                     .setCustomContentView(collapsedView);
 
             notificationManager.notify(notificationId, builder.build());
@@ -140,8 +148,8 @@ public class QuickNotification {
             builder = new NotificationCompat.Builder(context, channelId)
                     .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                     .setAutoCancel(true)
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                    .setContentTitle(title);
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
 
             return this;
         }
@@ -160,7 +168,7 @@ public class QuickNotification {
 
         private Context context;
 
-        private String title, body;
+        private String title, body, contentTitle;
 
         private RemoteViews collapsedView;
 
@@ -199,6 +207,14 @@ public class QuickNotification {
             );
 
             builder.setContentIntent(resultPendingIntent);
+
+            return this;
+        }
+
+
+        public BigTextBuilder setContentTitle(String contentTitle) {
+
+            this.contentTitle = contentTitle;
 
             return this;
         }
@@ -242,6 +258,7 @@ public class QuickNotification {
 
             builder.setStyle(new NotificationCompat.BigTextStyle().setBigContentTitle(title)
                     .bigText(bigText))
+                    .setContentTitle(contentTitle)
                     .setCustomContentView(collapsedView);
 
             notificationManager.notify(notificationId, builder.build());
@@ -271,8 +288,7 @@ public class QuickNotification {
             builder = new NotificationCompat.Builder(context, channelId)
                     .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                     .setAutoCancel(true)
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                    .setContentTitle(title);
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
             return this;
         }

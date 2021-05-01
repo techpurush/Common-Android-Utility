@@ -45,90 +45,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void checkDatePicker() {
-
-        DatePicker.showDatePicker(this, new DatePickedInterface() {
-            @Override
-            public void pickedDate(String day, String month, String year) {
-                DialogUtils.tst(getContext(), day + " - " + month + " - " + year);
-            }
-        });
-    }
-
-   /* private void askForPermission() {
-        PermissionUtilsX
-                .Builder(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                .requestWithListener(new PermissionGrantedOrDeniedInterface() {
-                    @Override
-                    public void granted(String... permissions) {
-
-                      *//*  DialogUtils.tst(getContext(), "Granted: " + permissions.length+"\n"+
-                                permissions[0]);*//*
-
-
-                        LogUtilsX.d("Permission: ", "Granted: " + permissions.length + "\n" +
-                                Arrays.asList(permissions).contains(Manifest.permission.WRITE_EXTERNAL_STORAGE));
-
-
-                    }
-
-                    @Override
-                    public void denied(String... permissions) {
-
-                        // DialogUtils.tst(getContext(), "Denied: " + permissions.length);
-
-                        LogUtilsX.d("Permission: ", "Denied: " + permissions.length + "\n" +
-                                Arrays.asList(permissions).contains(Manifest.permission.WRITE_EXTERNAL_STORAGE));
-
-
-                    }
-                });
-    }
-*/
-    /*   @Override
-       public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-           super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-
-           switch (requestCode) {
-               case WRITE_EXTERNAL_STORAGE: {
-                   // If request is cancelled, the result arrays are empty.
-
-                   *//* TO CHECK IF THE PERMISSION DENIED :
-
-                 if (grantResults.length > 0 && !Arrays.asList(grantResults).contains(PackageManager.PERMISSION_DENIED))
-
-                 *//*
-
-                DialogUtils.alert(MainActivity.this, Arrays.toString(grantResults));
-
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
-
-                    DialogUtils.alert(MainActivity.this, "GRANTED");
-
-                } else {
-
-                    DialogUtils.tst(MainActivity.this, "DENIED");
-
-
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-                }
-                return;
-            }
-
-            // other 'case' lines to check for other
-            // permissions this app might request
-        }
-    }
-*/
-
-    ProgressDialog progressDialog = null;
-
     public void open(View view) {
 
         Bitmap bitmap = ((BitmapDrawable) getContext().getResources().getDrawable(R.drawable.big_picture)).getBitmap();
@@ -142,19 +58,21 @@ public class MainActivity extends AppCompatActivity {
                 .setSubText("SubText")
                 .show();*/
 
-       /* new QuickNotification.BigPictureBuilder()
+        new QuickNotification.BigPictureBuilder()
                 .addNotificationBigPictureStyle(getContext(), "Title", "Body")
                 .setSmallPicture(bitmap2)
                 .setBigPicture(bitmap)
+                .setContentTitle("This is a custom content title for big image")
                 .setSmallPicturePosition(QuickNotification.SMALL_IMAGE_POSITION_RIGHT)
                 .setIcon(R.drawable.tap)
                 .setContentIntent(new Intent(getContext(), MainActivity.class))
                 .setSubText("SubText")
-                .show();*/
+                .show();
 
-        new QuickNotification.BigTextBuilder()
+        /*new QuickNotification.BigTextBuilder()
                 .addNotificationBigTextStyle(getContext(), "Title", "Body")
                 .setSmallPicture(bitmap2)
+                .setContentTitle("This is a custom content title")
                 .setSmallPicturePosition(QuickNotification.SMALL_IMAGE_POSITION_RIGHT)
                 .setIcon(R.drawable.tap)
                 .setContentIntent(new Intent(getContext(), MainActivity.class))
@@ -162,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 .setBigText("sdbfgvhsbdhaf sdbfsdhbjsbfgd" +
                         "dfgndfkjgfdjks" +
                         "dsgnsdfjkgbsdjk")
-                .show();
+                .show();*/
 
 
         //checkDatePicker();
@@ -252,6 +170,91 @@ public class MainActivity extends AppCompatActivity {
                 .request(101);*/
 
     }
+
+    private void checkDatePicker() {
+
+        DatePicker.showDatePicker(this, new DatePickedInterface() {
+            @Override
+            public void pickedDate(String day, String month, String year) {
+                DialogUtils.tst(getContext(), day + " - " + month + " - " + year);
+            }
+        });
+    }
+
+   /* private void askForPermission() {
+        PermissionUtilsX
+                .Builder(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .requestWithListener(new PermissionGrantedOrDeniedInterface() {
+                    @Override
+                    public void granted(String... permissions) {
+
+                      *//*  DialogUtils.tst(getContext(), "Granted: " + permissions.length+"\n"+
+                                permissions[0]);*//*
+
+
+                        LogUtilsX.d("Permission: ", "Granted: " + permissions.length + "\n" +
+                                Arrays.asList(permissions).contains(Manifest.permission.WRITE_EXTERNAL_STORAGE));
+
+
+                    }
+
+                    @Override
+                    public void denied(String... permissions) {
+
+                        // DialogUtils.tst(getContext(), "Denied: " + permissions.length);
+
+                        LogUtilsX.d("Permission: ", "Denied: " + permissions.length + "\n" +
+                                Arrays.asList(permissions).contains(Manifest.permission.WRITE_EXTERNAL_STORAGE));
+
+
+                    }
+                });
+    }
+*/
+    /*   @Override
+       public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+           super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+
+           switch (requestCode) {
+               case WRITE_EXTERNAL_STORAGE: {
+                   // If request is cancelled, the result arrays are empty.
+
+                   *//* TO CHECK IF THE PERMISSION DENIED :
+
+                 if (grantResults.length > 0 && !Arrays.asList(grantResults).contains(PackageManager.PERMISSION_DENIED))
+
+                 *//*
+
+                DialogUtils.alert(MainActivity.this, Arrays.toString(grantResults));
+
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+
+                    DialogUtils.alert(MainActivity.this, "GRANTED");
+
+                } else {
+
+                    DialogUtils.tst(MainActivity.this, "DENIED");
+
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
+    }
+*/
+
+    ProgressDialog progressDialog = null;
+
 
     private void checkTimer() {
 
