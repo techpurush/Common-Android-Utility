@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void open(View view) {
 
-        Bitmap bitmap = ((BitmapDrawable) getContext().getResources().getDrawable(R.drawable.big_picture)).getBitmap();
-        Bitmap bitmap2 = ((BitmapDrawable) getContext().getResources().getDrawable(R.drawable.logo)).getBitmap();
+        Bitmap bitmap = ((BitmapDrawable) getContext().getResources().getDrawable(R.drawable.cover)).getBitmap();
+        Bitmap bitmap2 = ((BitmapDrawable) getContext().getResources().getDrawable(R.drawable.cover)).getBitmap();
 
       /*  new QuickNotification()
                 .addNotificationBigTextStyle(getContext(), "Title", "Body")
@@ -58,28 +58,28 @@ public class MainActivity extends AppCompatActivity {
                 .setSubText("SubText")
                 .show();*/
 
-        new QuickNotification.WithoutExpansionBuilder()
+      /*  new QuickNotification.WithoutExpansionBuilder()
                 .addNotificationWithoutExpansion(getContext(), "Title", "Body")
                 .setSmallPicture(bitmap2)
                 .setContentTitle("This is a custom content title for big image")
-                .setSmallPicturePosition(QuickNotification.SMALL_IMAGE_POSITION_LEFT)
                 .setIcon(R.drawable.tap)
+                .setSmallPicturePosition(QuickNotification.LARGE_IMAGE_POSITION_RIGHT_WHITE)
                 .setContentIntent(new Intent(getContext(), MainActivity.class))
                 .setSubText("SubText")
-                .show();
+                .show();*/
 
-        /*new QuickNotification.BigTextBuilder()
+        new QuickNotification.BigTextBuilder()
                 .addNotificationBigTextStyle(getContext(), "Title", "Body")
                 .setSmallPicture(bitmap2)
                 .setContentTitle("This is a custom content title")
-                .setSmallPicturePosition(QuickNotification.SMALL_IMAGE_POSITION_RIGHT)
+                .setSmallPicturePosition(QuickNotification.SMALL_IMAGE_POSITION_RIGHT_BLACK)
                 .setIcon(R.drawable.tap)
                 .setContentIntent(new Intent(getContext(), MainActivity.class))
                 .setSubText("SubText")
                 .setBigText("sdbfgvhsbdhaf sdbfsdhbjsbfgd" +
                         "dfgndfkjgfdjks" +
                         "dsgnsdfjkgbsdjk")
-                .show();*/
+                .show();
 
 
         //checkDatePicker();

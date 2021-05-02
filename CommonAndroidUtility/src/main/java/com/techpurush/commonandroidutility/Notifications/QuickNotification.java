@@ -19,6 +19,10 @@ public class QuickNotification {
 
     public static int SMALL_IMAGE_POSITION_RIGHT = 2;
 
+    public static int SMALL_IMAGE_POSITION_RIGHT_BLACK = 3;
+    public static int LARGE_IMAGE_POSITION_RIGHT_BLACK = 4;
+    public static int LARGE_IMAGE_POSITION_RIGHT_WHITE = 5;
+
     public static class BigPictureBuilder {
 
         private int notificationId = 200;
@@ -108,9 +112,15 @@ public class QuickNotification {
             if (smallPicturePosition == SMALL_IMAGE_POSITION_LEFT)
                 collapsedView = new RemoteViews(context.getPackageName(),
                         R.layout.notification_small_image_on_left);
-            else
+            else if (smallPicturePosition == SMALL_IMAGE_POSITION_RIGHT_BLACK)
                 collapsedView = new RemoteViews(context.getPackageName(),
-                        R.layout.notification_small);
+                        R.layout.notification_black_right);
+            else if (smallPicturePosition == LARGE_IMAGE_POSITION_RIGHT_BLACK)
+                collapsedView = new RemoteViews(context.getPackageName(),
+                        R.layout.notification_large_image);
+            else if (smallPicturePosition == LARGE_IMAGE_POSITION_RIGHT_WHITE)
+                collapsedView = new RemoteViews(context.getPackageName(),
+                        R.layout.notification_large_white);
 
             collapsedView.setTextViewText(R.id.textView2, title);
             collapsedView.setTextViewText(R.id.textView3, body);
@@ -248,9 +258,15 @@ public class QuickNotification {
             if (smallPicturePosition == SMALL_IMAGE_POSITION_LEFT)
                 collapsedView = new RemoteViews(context.getPackageName(),
                         R.layout.notification_small_image_on_left);
-            else
+            else if (smallPicturePosition == SMALL_IMAGE_POSITION_RIGHT_BLACK)
                 collapsedView = new RemoteViews(context.getPackageName(),
-                        R.layout.notification_small);
+                        R.layout.notification_black_right);
+            else if (smallPicturePosition == LARGE_IMAGE_POSITION_RIGHT_BLACK)
+                collapsedView = new RemoteViews(context.getPackageName(),
+                        R.layout.notification_large_image);
+            else if (smallPicturePosition == LARGE_IMAGE_POSITION_RIGHT_WHITE)
+                collapsedView = new RemoteViews(context.getPackageName(),
+                        R.layout.notification_large_white);
 
             collapsedView.setTextViewText(R.id.textView2, title);
             collapsedView.setTextViewText(R.id.textView3, body);
@@ -381,9 +397,15 @@ public class QuickNotification {
             if (smallPicturePosition == SMALL_IMAGE_POSITION_LEFT)
                 collapsedView = new RemoteViews(context.getPackageName(),
                         R.layout.notification_small_image_on_left);
-            else
+            else if (smallPicturePosition == SMALL_IMAGE_POSITION_RIGHT_BLACK)
                 collapsedView = new RemoteViews(context.getPackageName(),
-                        R.layout.notification_small);
+                        R.layout.notification_black_right);
+            else if (smallPicturePosition == LARGE_IMAGE_POSITION_RIGHT_BLACK)
+                collapsedView = new RemoteViews(context.getPackageName(),
+                        R.layout.notification_large_image);
+            else if (smallPicturePosition == LARGE_IMAGE_POSITION_RIGHT_WHITE)
+                collapsedView = new RemoteViews(context.getPackageName(),
+                        R.layout.notification_large_white);
 
             collapsedView.setTextViewText(R.id.textView2, title);
             collapsedView.setTextViewText(R.id.textView3, body);
