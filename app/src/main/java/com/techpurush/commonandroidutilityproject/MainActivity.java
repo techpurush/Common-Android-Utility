@@ -68,17 +68,16 @@ public class MainActivity extends AppCompatActivity {
                 .setSubText("SubText")
                 .show();*/
 
-        new QuickNotification.BigTextBuilder()
-                .addNotificationBigTextStyle(getContext(), "Title", "Body")
+        new QuickNotification.BigPictureBuilder()
+                .addNotificationBigPictureStyle(getContext(), "Top Selling T-Shirts", "Offer 50% discount on stylish Tshirts, Click below to know more.")
                 .setSmallPicture(bitmap2)
+                .setBigPicture(bitmap2)
                 .setContentTitle("This is a custom content title")
-                .setSmallPicturePosition(QuickNotification.SMALL_IMAGE_POSITION_RIGHT_BLACK)
+                .setSmallPicturePosition(QuickNotification.XLARGE_IMAGE_POSITION_RIGHT_WHITE)
                 .setIcon(R.drawable.tap)
                 .setContentIntent(new Intent(getContext(), MainActivity.class))
                 .setSubText("SubText")
-                .setBigText("sdbfgvhsbdhaf sdbfsdhbjsbfgd" +
-                        "dfgndfkjgfdjks" +
-                        "dsgnsdfjkgbsdjk")
+
                 .show();
 
 
