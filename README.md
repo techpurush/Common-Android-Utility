@@ -4,9 +4,20 @@ you in seeding up your development by simply reusing the most common utility cla
 
 This is on development project much more features is waiting to come in near future.
 
-Current Version : 1.0.6
+Current Version : 1.2.5
 
-The API includes the below mentioned utility classes for your help:
+How to use:
+
+2)Add this at project level:
+
+maven { url 'https://jitpack.io' }
+
+3)Add this at app level:
+
+    implementation 'com.github.techpurush:Common-Android-Utility:1.2.5'
+
+
+The API includes the below mentioned utility classes for your help(updated time to time):
 
     
     ****************** JAVA UTILITIES *****************
