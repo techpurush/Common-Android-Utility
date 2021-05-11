@@ -10,7 +10,8 @@ How to use:
 
 2)Add this at project level:
 
-maven { url 'https://jitpack.io' }
+        maven { url 'https://jitpack.io' }
+
 
 3)Add this at app level:
 
