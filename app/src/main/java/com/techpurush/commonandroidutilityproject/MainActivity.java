@@ -10,8 +10,13 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
+import com.techpurush.commonandroidutility.AESCryptDecryptUtils;
+import com.techpurush.commonandroidutility.BackgroundWork.BackgroundWorkUtilsX;
+import com.techpurush.commonandroidutility.BackgroundWork.MyWorkListener;
 import com.techpurush.commonandroidutility.DateTimePicker.DatePickedInterface;
 import com.techpurush.commonandroidutility.DateTimePicker.DatePicker;
 import com.techpurush.commonandroidutility.DateTimePicker.TimeEllapsedInterface;
@@ -21,12 +26,14 @@ import com.techpurush.commonandroidutility.DateTimePicker.Timer;
 import com.techpurush.commonandroidutility.DialogUtils;
 import com.techpurush.commonandroidutility.Notifications.QuickNotification;
 
+import java.security.GeneralSecurityException;
 import java.util.Arrays;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private static final int WRITE_EXTERNAL_STORAGE = 111;
+    private static final String TAG = "BGWorkUtilsX";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +52,61 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void open(View view) {
+    public void open(View view) throws GeneralSecurityException {
+
+        BackgroundWorkUtilsX.builder(getContext())
+                .doWorkWithListener(new MyWorkListener() {
+                    @Override
+                    public void putBackgroundWorkHere() {
+
+                        Log.d(TAG, "Uploading files to the server...");
+
+                        int count = 0;
+
+                        for (int i = 1; i <= 500000000; i++) {
+                            if (i % 50000000 == 0) {
+                                count += 10;
+                                Log.d(TAG, "uploading... " + count + "%");
+                            }
+                        }
+
+                        String name = null;
+
+                        name.length();
+
+
+                    }
+
+                    @Override
+                    public void workDone(String status) {
+
+                        Log.d(TAG, "Work status: " + status);
+
+                    }
+
+                    @Override
+                    public void workFailed(String status) {
+
+                        Log.d(TAG, "Work status: " + status);
+
+                    }
+                });
+/*
+        String text="Aditya Kumar";
+
+        String pass="kaditya679";
+
+        String encrypt = AESCryptDecryptUtils.encrypt(pass, text);
+
+        String decrypt = AESCryptDecryptUtils.decrypt(pass, encrypt);
+
+
+        Toast.makeText(this, text+"\n"+encrypt+"\n"+decrypt, Toast.LENGTH_SHORT).show();
 
         Bitmap bitmap = ((BitmapDrawable) getContext().getResources().getDrawable(R.drawable.cover)).getBitmap();
-        Bitmap bitmap2 = ((BitmapDrawable) getContext().getResources().getDrawable(R.drawable.cover)).getBitmap();
+        Bitmap bitmap2 = ((BitmapDrawable) getContext().getResources().getDrawable(R.drawable.cover)).getBitmap();*/
 
-      /*  new QuickNotification()
+        /*new QuickNotification()
                 .addNotificationBigTextStyle(getContext(), "Title", "Body")
                 .setIcon(R.drawable.notification_pic)
                 .setImagePosition(true)
@@ -58,7 +114,10 @@ public class MainActivity extends AppCompatActivity {
                 .setSubText("SubText")
                 .show();*/
 
-      /*  new QuickNotification.WithoutExpansionBuilder()
+
+
+
+        /*new QuickNotification.WithoutExpansionBuilder()
                 .addNotificationWithoutExpansion(getContext(), "Title", "Body")
                 .setSmallPicture(bitmap2)
                 .setContentTitle("This is a custom content title for big image")
@@ -68,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 .setSubText("SubText")
                 .show();*/
 
-        new QuickNotification.BigPictureBuilder()
+       /* new QuickNotification.BigPictureBuilder()
                 .addNotificationBigPictureStyle(getContext(), "Top Selling T-Shirts", "Offer 50% discount on stylish Tshirts, Click below to know more.")
                 .setSmallPicture(bitmap2)
                 .setBigPicture(bitmap2)
@@ -78,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                 .setContentIntent(new Intent(getContext(), MainActivity.class))
                 .setSubText("SubText")
 
-                .show();
+                .show();*/
 
 
         //checkDatePicker();

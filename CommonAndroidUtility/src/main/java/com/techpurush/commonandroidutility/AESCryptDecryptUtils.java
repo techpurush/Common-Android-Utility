@@ -90,7 +90,7 @@ public final class AESCryptDecryptUtils {
      * @return Encrypted cipher text (not encoded)
      * @throws GeneralSecurityException if something goes wrong during encryption
      */
-    public static byte[] encrypt(final SecretKeySpec key, final byte[] iv, final byte[] message)
+    private static byte[] encrypt(final SecretKeySpec key, final byte[] iv, final byte[] message)
             throws GeneralSecurityException {
         final Cipher cipher = Cipher.getInstance(AES_MODE);
         IvParameterSpec ivSpec = new IvParameterSpec(iv);
@@ -147,7 +147,7 @@ public final class AESCryptDecryptUtils {
      * @return Decrypted message cipher text (not encoded)
      * @throws GeneralSecurityException if something goes wrong during encryption
      */
-    public static byte[] decrypt(final SecretKeySpec key, final byte[] iv, final byte[] decodedCipherText)
+    private static byte[] decrypt(final SecretKeySpec key, final byte[] iv, final byte[] decodedCipherText)
             throws GeneralSecurityException {
         final Cipher cipher = Cipher.getInstance(AES_MODE);
         IvParameterSpec ivSpec = new IvParameterSpec(iv);
