@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,6 +29,8 @@ import com.google.android.material.snackbar.Snackbar;
 import com.hsalf.smilerating.BaseRating;
 import com.hsalf.smilerating.SmileRating;
 import com.techpurush.commonandroidutility.Adapters.SingleItemAdapter;
+import com.techpurush.commonandroidutility.BottomsheetDialog.BSResponseSelectedInterface;
+import com.techpurush.commonandroidutility.BottomsheetDialog.BottomSheetDialogUtilsx;
 import com.techpurush.commonandroidutility.Utils.Constants;
 
 import java.util.List;
@@ -210,6 +213,16 @@ public class DialogUtils {
 
             }
         }).show();
+
+
+    }
+
+    public static void showBottomSheetDialog(FragmentManager fragmentManager, List<String> list, BSResponseSelectedInterface callback) {
+
+        BottomSheetDialogUtilsx bottomSheetDialogUtilsx = new BottomSheetDialogUtilsx();
+        bottomSheetDialogUtilsx.setItems(list);
+        bottomSheetDialogUtilsx.setCallback(callback);
+        bottomSheetDialogUtilsx.show(fragmentManager, "bottomSheetDialogUtilsx");
 
 
     }

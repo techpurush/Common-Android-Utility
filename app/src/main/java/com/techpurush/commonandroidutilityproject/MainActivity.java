@@ -1,6 +1,8 @@
 package com.techpurush.commonandroidutilityproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.Manifest;
 import android.app.Activity;
@@ -14,9 +16,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.techpurush.commonandroidutility.AESCryptDecryptUtils;
 import com.techpurush.commonandroidutility.BackgroundWork.BackgroundWorkUtilsX;
 import com.techpurush.commonandroidutility.BackgroundWork.MyWorkListener;
+import com.techpurush.commonandroidutility.BottomsheetDialog.BSResponseSelectedInterface;
+import com.techpurush.commonandroidutility.BottomsheetDialog.BottomSheetDialogUtilsx;
 import com.techpurush.commonandroidutility.DateTimePicker.DatePickedInterface;
 import com.techpurush.commonandroidutility.DateTimePicker.DatePicker;
 import com.techpurush.commonandroidutility.DateTimePicker.TimeEllapsedInterface;
@@ -24,10 +29,14 @@ import com.techpurush.commonandroidutility.DateTimePicker.TimePickedInterface;
 import com.techpurush.commonandroidutility.DateTimePicker.TimePicker;
 import com.techpurush.commonandroidutility.DateTimePicker.Timer;
 import com.techpurush.commonandroidutility.DialogUtils;
+import com.techpurush.commonandroidutility.IntentUtils;
 import com.techpurush.commonandroidutility.Notifications.QuickNotification;
+import com.techpurush.commonandroidutility.Slider.FragmentViewPagerActivity;
+import com.techpurush.commonandroidutility.Slider.ViewsSliderActivity;
 
 import java.security.GeneralSecurityException;
 import java.util.Arrays;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -49,12 +58,86 @@ public class MainActivity extends AppCompatActivity {
 
         //askForPermission();
 
+        initBottomSheet();
+
+    }
+
+    private void initBottomSheet() {
+
+        BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(findViewById(R.id.bottomSheet));
+
+        bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                switch (newState) {
+                    case BottomSheetBehavior.STATE_HIDDEN: {
+
+                        DialogUtils.tst(getContext(), "STATE_HIDDEN");
+                        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+
+                    }
+                    break;
+                    case BottomSheetBehavior.STATE_EXPANDED: {
+                        //btnBottomSheet.setText("Close Sheet");
+
+                        DialogUtils.tst(getContext(), "STATE_EXPANDED");
+
+                    }
+                    break;
+                    case BottomSheetBehavior.STATE_COLLAPSED: {
+                        //btnBottomSheet.setText("Expand Sheet");
+
+                        DialogUtils.tst(getContext(), "STATE_COLLAPSED");
+
+                    }
+                    break;
+                    case BottomSheetBehavior.STATE_DRAGGING: {
+
+                        DialogUtils.tst(getContext(), "STATE_DRAGGING");
+
+                    }
+                    break;
+                    case BottomSheetBehavior.STATE_SETTLING: {
+
+                        DialogUtils.tst(getContext(), "STATE_SETTLING");
+
+                    }
+                    break;
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+            }
+        });
 
     }
 
     public void open(View view) throws GeneralSecurityException {
 
-        BackgroundWorkUtilsX.builder(getContext())
+        List<String> list = List.of("1Share with Friends",
+                "1Bookmark1",
+                "1Add to Favourites",
+                "1More Information","Rate"
+        );
+
+        DialogUtils.showBottomSheetDialog(getSupportFragmentManager(), list, new BSResponseSelectedInterface() {
+            @Override
+            public void itemClicked(String item) {
+
+                DialogUtils.tst(getContext(),item);
+
+
+            }
+        });
+
+
+
+        //IntentUtils.startActivity(getContext(), FragmentViewPagerActivity.class);
+
+
+       /* BackgroundWorkUtilsX.builder(getContext())
                 .doWorkWithListener(new MyWorkListener() {
                     @Override
                     public void putBackgroundWorkHere() {
@@ -90,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.d(TAG, "Work status: " + status);
 
                     }
-                });
+                });*/
 /*
         String text="Aditya Kumar";
 

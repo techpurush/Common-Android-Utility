@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CommonAndroidUtilityProject">
 
+        <activity android:name="com.techpurush.commonandroidutility.Slider.ViewsSliderActivity"/>
+        <activity android:name="com.techpurush.commonandroidutility.Slider.FragmentViewPagerActivity"/>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

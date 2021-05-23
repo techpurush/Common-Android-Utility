@@ -2,5 +2,63 @@
 
     <string name="how_was_your_experience_with_the_app">How was your experience with the app?</string>
     <string name="do_you_really_want_to_exit">Do you really want to exit?</string>
+    <string name="skip">Skip</string>
+    <string name="next">Next</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_views_slider">ViewsSliderActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+
+    <string name="previous">PREVIOUS</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">Hello Food!</string>
+    <string name="slide_1_desc">The easiest way to order food from your favourite restaurant!</string>
+
+    <string name="slide_2_title">Movie Tickets</string>
+    <string name="slide_2_desc">Book movie tickets for your family and friends!</string>
+
+    <string name="slide_3_title">Great Discounts</string>
+    <string name="slide_3_desc">Best discounts on every single service we offer!</string>
+
+    <string name="slide_4_title">World Travel</string>
+    <string name="slide_4_desc">Book tickets of any transportation and travel the world!</string>
+
+    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
+    <string name="play_again">Play Again</string>
+    <string name="slides_ended">All slides ended. Launch your activity here!</string>
+    <string name="change_orientation">Change Orientation</string>
+    <string name="rotate">Rotate</string>
+    <string name="title_fragment_slider">Fragment Slider</string>
+    <string name="anti_clock_spin">Anti Clock Spin</string>
+    <string name="clock_spin">Clock Spin</string>
+    <string name="cube_in_depth">Cube In Depth</string>
+    <string name="cube_in_rotate">Cube In Rotate</string>
+    <string name="cube_in_scaling">Cube In Scaling</string>
+    <string name="cube_out_depth">Cube Out Depth</string>
+    <string name="cube_out_rotate">Cube Out Rotate</string>
+    <string name="cube_out_scaling">Cube Out Scaling</string>
+    <string name="depth_page">Depth Page</string>
+    <string name="depth">Depth</string>
+    <string name="fade_out">Fade Out</string>
+    <string name="fan">Fan</string>
+    <string name="fidget_spin">"Fidget Spin "</string>
+    <string name="gate">"Gate "</string>
+    <string name="hinge">Hinge</string>
+    <string name="horizontal_flip">Horizontal Flip</string>
+    <string name="pop">Pop</string>
+    <string name="simple_transformation">Simple</string>
+    <string name="spinner_transformation">Spinner</string>
+    <string name="toss_transformation">Toss</string>
+    <string name="vertical_flip">Vertical Flip</string>
+    <string name="vertical_shut">Vertical Shut</string>
+    <string name="zoom_out">Zoom Out</string>
 
 </resources>
