@@ -116,7 +116,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void open(View view) throws GeneralSecurityException {
 
-        List<String> list = List.of("1Share with Friends",
+
+        DialogUtils.showRatingBar(getContext(),"","",null);
+     /*   List<String> list = List.of("1Share with Friends",
                 "1Bookmark1",
                 "1Add to Favourites",
                 "1More Information","Rate"
@@ -131,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
+*/
 
 
         //IntentUtils.startActivity(getContext(), FragmentViewPagerActivity.class);
