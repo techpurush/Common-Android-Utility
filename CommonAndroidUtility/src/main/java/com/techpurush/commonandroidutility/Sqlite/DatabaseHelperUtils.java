@@ -77,6 +77,17 @@ public class DatabaseHelperUtils extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor read(String orderBy) {
+
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + this.tableName + " ORDER BY "+orderBy+" DESC";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        return cursor;
+    }
+
     public int update(String column, String value, String whereID) {
         SQLiteDatabase db = this.getWritableDatabase();
 
