@@ -15,11 +15,11 @@ import com.techpurush.commonandroidutility.R;
 import java.util.List;
 
 
-public class SingleItemAdapter extends RecyclerView.Adapter<SingleItemAdapter.ViewHolder> {
+public class SingleItemAdapterWithImage extends RecyclerView.Adapter<SingleItemAdapterWithImage.ViewHolder> {
     Context context;
     List<String> data;
 
-    public SingleItemAdapter(Context context, List<String> data) {
+    public SingleItemAdapterWithImage(Context context, List<String> data) {
         this.context = context;
         this.data = data;
     }

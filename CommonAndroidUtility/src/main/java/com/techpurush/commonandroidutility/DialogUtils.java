@@ -13,29 +13,349 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 import com.hsalf.smilerating.BaseRating;
 import com.hsalf.smilerating.SmileRating;
 import com.techpurush.commonandroidutility.Adapters.SingleItemAdapter;
 import com.techpurush.commonandroidutility.BottomsheetDialog.BSResponseSelectedInterface;
 import com.techpurush.commonandroidutility.BottomsheetDialog.BottomSheetDialogUtilsx;
+import com.techpurush.commonandroidutility.BottomsheetDialog.GridBottomSheetDialogFragment;
+import com.techpurush.commonandroidutility.Interfaces.IDPassCallback;
+import com.techpurush.commonandroidutility.Interfaces.OKCancelCallback;
+import com.techpurush.commonandroidutility.Interfaces.OnItemClickCallback;
+import com.techpurush.commonandroidutility.Interfaces.OnItemSelectedCallback;
+import com.techpurush.commonandroidutility.Interfaces.OpenCallback;
 import com.techpurush.commonandroidutility.Utils.Constants;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DialogUtils {
+
+    private static String single_choice_selected;
+
+    public static void showTermOfServiceDialog(Context context,String title,String subtitle, String message, OKCancelCallback okCancelCallback) {
+
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        dialog.setContentView(R.layout.dialog_term_of_services);
+
+
+        TextView titleTV = dialog.findViewById(R.id.title);
+        TextView subtitleTV = dialog.findViewById(R.id.subTitle);
+        TextView descriptionTV = dialog.findViewById(R.id.description);
+
+        titleTV.setText(title);
+        subtitleTV.setText(subtitle);
+        descriptionTV.setText(message);
+
+        dialog.setCancelable(true);
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+
+        ((ImageButton) dialog.findViewById(R.id.bt_close)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        ((Button) dialog.findViewById(R.id.bt_accept)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               okCancelCallback.okClicked();
+               dialog.dismiss();
+            }
+        });
+
+        ((Button) dialog.findViewById(R.id.bt_decline)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                okCancelCallback.cancelClicked();
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+        dialog.getWindow().setAttributes(lp);
+
+    }
+
+    public static void showBottomSheetGridDialog(Context context, String[] titles, Bitmap[] bitmaps, GridBottomSheetDialogFragment.GridBottomSheetDialogListener gridBottomSheetDialogListener, FragmentManager
+            fragmentManager) {
+        GridBottomSheetDialogFragment gridBottomSheetDialogFragment =
+                new GridBottomSheetDialogFragment(context, titles, bitmaps, gridBottomSheetDialogListener);
+        gridBottomSheetDialogFragment.show(fragmentManager, gridBottomSheetDialogFragment.getClass().getName());
+    }
+
+
+    public static void showMaterialDialog(String title, String message, int icon, Context context, OKCancelCallback okCancelCallback) {
+        MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(context);
+        materialAlertDialogBuilder.setTitle((CharSequence) title);
+        if (message != null) {
+            materialAlertDialogBuilder.setMessage((CharSequence) message);
+        }
+        materialAlertDialogBuilder.setIcon(icon);
+        materialAlertDialogBuilder.setPositiveButton("OK", (DialogInterface.OnClickListener) new DialogInterface.OnClickListener() {
+
+
+            public final void onClick(DialogInterface dialogInterface, int i) {
+
+                okCancelCallback.okClicked();
+
+            }
+        });
+        materialAlertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                okCancelCallback.cancelClicked();
+            }
+        });
+        materialAlertDialogBuilder.show();
+    }
+
+    public static void showMaterialDialogInputEditText(String title, String message,
+                                                       int icon, Activity context, IDPassCallback idPassCallback) {
+        MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(context);
+
+        LayoutInflater inflater = context.getLayoutInflater();
+
+        View dialogView = inflater.inflate(R.layout.dialog_edit_text, null);
+
+        materialAlertDialogBuilder.setView(dialogView);
+        materialAlertDialogBuilder.setTitle((CharSequence) title);
+
+        TextInputEditText txtEmail, txtPassword;
+
+        txtEmail = dialogView.findViewById(R.id.txtEmail);
+        txtPassword = dialogView.findViewById(R.id.txtPassword);
+
+        if (message != null) {
+            materialAlertDialogBuilder.setMessage((CharSequence) message);
+        }
+        materialAlertDialogBuilder.setIcon(icon);
+        materialAlertDialogBuilder.setPositiveButton("OK", (DialogInterface.OnClickListener) new DialogInterface.OnClickListener() {
+
+            public final void onClick(DialogInterface dialogInterface, int i) {
+
+                String strEmail = "", strPass = "";
+
+                strEmail = txtEmail.getText().toString();
+                strPass = txtPassword.getText().toString();
+
+                if (!strEmail.isEmpty() && !strPass.isEmpty()) {
+
+                    idPassCallback.onSubmit(strEmail, strPass);
+                } else if (!strEmail.isEmpty()) {
+
+                    idPassCallback.onSubmit(strEmail, "");
+                } else if (!strPass.isEmpty()) {
+
+                    idPassCallback.onSubmit("", strPass);
+                } else if (strEmail.isEmpty() && strPass.isEmpty()) {
+
+                    idPassCallback.onSubmit("", "");
+
+                }
+
+            }
+        });
+        materialAlertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                idPassCallback.onCancel();
+            }
+        });
+        materialAlertDialogBuilder.show();
+    }
+
+
+    public static void showDialogLevel(Context context, String title, String description, String btnText, OpenCallback openCallback) {
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        dialog.setContentView(R.layout.dialog_achievement_level);
+
+        TextView titleTV = dialog.findViewById(R.id.title);
+        TextView descriptionTV = dialog.findViewById(R.id.description);
+        TextView btnTextTV = dialog.findViewById(R.id.btnText);
+
+        titleTV.setText(title);
+        descriptionTV.setText(description);
+        btnTextTV.setText(btnText);
+
+        CardView cvOpen = dialog.findViewById(R.id.cardViewOpen);
+        cvOpen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCallback.openClicked();
+                dialog.dismiss();
+            }
+        });
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.setCancelable(true);
+        dialog.show();
+    }
+
+    public static void showDialogChampion(Context context, String heading, String title, String description, String btnText, OpenCallback openCallback) {
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        dialog.setContentView(R.layout.dialog_achievement_champion);
+
+        TextView headingTV = dialog.findViewById(R.id.heading);
+        TextView titleTV = dialog.findViewById(R.id.title);
+        TextView descriptionTV = dialog.findViewById(R.id.description);
+        TextView btnTextTV = dialog.findViewById(R.id.btnText);
+
+        headingTV.setText(heading);
+        titleTV.setText(title);
+        descriptionTV.setText(description);
+        btnTextTV.setText(btnText);
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.setCancelable(true);
+        dialog.findViewById(R.id.bt_action).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCallback.openClicked();
+                dialog.dismiss();
+
+            }
+        });
+        dialog.show();
+    }
+
+    public static void showDialogCongrat(Context context, String title, String description, String btnText, OpenCallback openCallback) {
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        dialog.setContentView(R.layout.dialog_achievement_congrat);
+
+        TextView titleTV = dialog.findViewById(R.id.title);
+        TextView descriptionTV = dialog.findViewById(R.id.description);
+        TextView btnTextTV = dialog.findViewById(R.id.btnText);
+
+        titleTV.setText(title);
+        descriptionTV.setText(description);
+        btnTextTV.setText(btnText);
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.setCancelable(true);
+        dialog.findViewById(R.id.bt_action).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCallback.openClicked();
+                dialog.dismiss();
+
+            }
+        });
+        dialog.show();
+    }
+
+    public static void showMultiChoiceDialog(Context context, String title, String[]
+            list, String positiveResponseText,
+                                             String negativeResponseText, OnItemSelectedCallback onItemSelectedCallback) {
+        single_choice_selected = list[0];
+        boolean[] clicked_items = new boolean[list.length];
+
+        ArrayList<String> selectedItems = new ArrayList<>();
+
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(context);
+        builder.setTitle("Your preferred colors");
+        builder.setMultiChoiceItems(list, clicked_items, new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i, boolean b) {
+                clicked_items[i] = b;
+            }
+        });
+        builder.setPositiveButton(positiveResponseText, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                for (int j = 0; j < list.length; j++)
+                    if (clicked_items[j])
+                        selectedItems.add(list[j]);
+
+                onItemSelectedCallback.onSubmit(selectedItems.toArray(new String[0]));
+
+
+            }
+        });
+        builder.setNegativeButton(negativeResponseText, null);
+        builder.show();
+    }
+
+    public static void showSingleChoiceDialog(Context context, String title, String[]
+            list, String positiveResponseText,
+                                              String negativeResponseText, OnItemClickCallback onItemClickCallback) {
+        single_choice_selected = list[0];
+        androidx.appcompat.app.AlertDialog.Builder builder =
+                new androidx.appcompat.app.AlertDialog.Builder(context);
+        builder.setTitle(title);
+        builder.setSingleChoiceItems(list, 0, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                single_choice_selected = list[i];
+            }
+        });
+        builder.setPositiveButton(positiveResponseText, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                onItemClickCallback.onClick(single_choice_selected, i);
+
+            }
+        });
+        builder.setNegativeButton(negativeResponseText, null);
+        builder.show();
+    }
+
+    public static void showSingleChoiceDialog(Context context, String title, String[]
+            list, OnItemClickCallback onItemClickCallback) {
+        single_choice_selected = list[0];
+        androidx.appcompat.app.AlertDialog.Builder builder =
+                new androidx.appcompat.app.AlertDialog.Builder(context);
+        builder.setTitle(title);
+        builder.setSingleChoiceItems(list, 0, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                single_choice_selected = list[i];
+            }
+        });
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                onItemClickCallback.onClick(single_choice_selected, i);
+
+            }
+        });
+        builder.setNegativeButton("Cancel", null);
+        builder.show();
+    }
 
     public static void alert(@Nullable Context context, Object msg) {
 
@@ -217,7 +537,8 @@ public class DialogUtils {
 
     }
 
-    public static void showBottomSheetDialog(FragmentManager fragmentManager, List<String> list, BSResponseSelectedInterface callback) {
+    public static void showBottomSheetDialog(FragmentManager
+                                                     fragmentManager, List<String> list, BSResponseSelectedInterface callback) {
 
         BottomSheetDialogUtilsx bottomSheetDialogUtilsx = new BottomSheetDialogUtilsx();
         bottomSheetDialogUtilsx.setItems(list);
@@ -278,7 +599,8 @@ public class DialogUtils {
         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
-    public static void showDialogList(Context context, List<String> data) {
+    public static void showDialogList(Context
+                                              context, List<String> data, OnItemClickCallback onItemClickCallback) {
 
         Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.dialog_list);
@@ -288,7 +610,21 @@ public class DialogUtils {
 
         rv.setLayoutManager(new LinearLayoutManager(context));
 
-        rv.setAdapter(new SingleItemAdapter(context, data));
+        SingleItemAdapter singleItemAdapter = new SingleItemAdapter(context, data);
+
+        rv.setAdapter(singleItemAdapter);
+
+        singleItemAdapter.setItemClickListener(new SingleItemAdapter.ClickListener() {
+            @Override
+            public void itemclicked(View v, int position) {
+
+                onItemClickCallback.onClick(data.get(position), position);
+
+                if (dialog != null)
+                    dialog.dismiss();
+
+            }
+        });
 
 
         ivClose.setOnClickListener(new View.OnClickListener() {

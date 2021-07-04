@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/ivClose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
         android:layout_marginTop="8dp"
         android:src="@drawable/ic_close"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,10 +20,9 @@
         android:id="@+id/cardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="10dp"
-        app:cardUseCompatPadding="true"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivClose">
@@ -36,7 +35,7 @@
             <ImageView
                 android:id="@+id/ivDialog"
                 android:layout_width="0dp"
-                android:layout_height="220dp"
+                android:layout_height="@dimen/_220sdp"
                 android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"

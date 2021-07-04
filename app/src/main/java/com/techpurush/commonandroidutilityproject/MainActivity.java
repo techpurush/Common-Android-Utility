@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,8 +21,10 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.techpurush.commonandroidutility.AESCryptDecryptUtils;
 import com.techpurush.commonandroidutility.BackgroundWork.BackgroundWorkUtilsX;
 import com.techpurush.commonandroidutility.BackgroundWork.MyWorkListener;
+import com.techpurush.commonandroidutility.BitmapUtilX;
 import com.techpurush.commonandroidutility.BottomsheetDialog.BSResponseSelectedInterface;
 import com.techpurush.commonandroidutility.BottomsheetDialog.BottomSheetDialogUtilsx;
+import com.techpurush.commonandroidutility.BottomsheetDialog.GridBottomSheetDialogFragment;
 import com.techpurush.commonandroidutility.DateTimePicker.DatePickedInterface;
 import com.techpurush.commonandroidutility.DateTimePicker.DatePicker;
 import com.techpurush.commonandroidutility.DateTimePicker.TimeEllapsedInterface;
@@ -30,11 +33,17 @@ import com.techpurush.commonandroidutility.DateTimePicker.TimePicker;
 import com.techpurush.commonandroidutility.DateTimePicker.Timer;
 import com.techpurush.commonandroidutility.DialogUtils;
 import com.techpurush.commonandroidutility.IntentUtils;
+import com.techpurush.commonandroidutility.Interfaces.IDPassCallback;
+import com.techpurush.commonandroidutility.Interfaces.OKCancelCallback;
+import com.techpurush.commonandroidutility.Interfaces.OnItemClickCallback;
+import com.techpurush.commonandroidutility.Interfaces.OnItemSelectedCallback;
+import com.techpurush.commonandroidutility.Interfaces.OpenCallback;
 import com.techpurush.commonandroidutility.Notifications.QuickNotification;
 import com.techpurush.commonandroidutility.Slider.FragmentViewPagerActivity;
 import com.techpurush.commonandroidutility.Slider.ViewsSliderActivity;
 
 import java.security.GeneralSecurityException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -44,10 +53,196 @@ public class MainActivity extends AppCompatActivity {
     private static final int WRITE_EXTERNAL_STORAGE = 111;
     private static final String TAG = "BGWorkUtilsX";
 
+    List<String> list = Arrays.asList("Red", "Green", "Blue", "Purple", "Olive");
+    String lorem_ipsum = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry is standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. \10\10\10 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). \10\10\10 There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there is not anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc. \10\10\10 Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32. The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.";
+
+    List<String> menuList = Arrays.asList(
+            "TermOfServiceDialog",
+            "showBottomSheetGridDialog",
+            "showMaterialDialog",
+            "showMaterialDialogInputEditText",
+            "showDialogLevel",
+            "showDialogChampion",
+            "showDialogCongrat",
+            "showMultiChoiceDialog",
+            "showSingleChoiceDialog");
+
+
+    private void showMenu() {
+
+        DialogUtils.showBottomSheetDialog(getSupportFragmentManager(), menuList, new BSResponseSelectedInterface() {
+            @Override
+            public void itemClicked(String item) {
+
+                Bitmap[] bitmaps = {BitmapFactory.decodeResource(getResources(), R.drawable.logo),
+                        BitmapFactory.decodeResource(getResources(), R.drawable.logo),
+                        BitmapFactory.decodeResource(getResources(), R.drawable.logo),
+                        BitmapFactory.decodeResource(getResources(), R.drawable.logo),
+                        BitmapFactory.decodeResource(getResources(), R.drawable.logo)};
+
+                switch (item) {
+
+                    case "TermOfServiceDialog": {
+
+                        DialogUtils.showTermOfServiceDialog(getContext(),
+                                "Title", "Subtitle", "Some big message",
+                                new OKCancelCallback() {
+                                    @Override
+                                    public void okClicked() {
+                                        DialogUtils.tst(getContext(), "OK");
+                                    }
+
+                                    @Override
+                                    public void cancelClicked() {
+
+                                        DialogUtils.tst(getContext(), "Cancelled");
+
+                                    }
+                                });
+
+                        break;
+                    }
+
+                    case "showBottomSheetGridDialog": {
+
+                        DialogUtils.showBottomSheetGridDialog(getContext(),
+                                list.toArray(new String[0]),
+                                bitmaps, new GridBottomSheetDialogFragment.GridBottomSheetDialogListener() {
+                                    @Override
+                                    public void onButtonClicked(String item, int position) {
+
+                                        DialogUtils.tst(getContext(), item);
+                                    }
+                                }, getSupportFragmentManager()
+                        );
+
+                        break;
+                    }
+
+                    case "showMaterialDialog": {
+
+                        DialogUtils.showMaterialDialog("Title",
+                                "This is a simple message", R.drawable.logo, getContext(), new OKCancelCallback() {
+                                    @Override
+                                    public void okClicked() {
+
+                                        DialogUtils.tst(getContext(), "OK");
+                                    }
+
+                                    @Override
+                                    public void cancelClicked() {
+                                        DialogUtils.tst(getContext(), "Cancel");
+
+                                    }
+                                });
+
+                        break;
+                    }
+
+                    case "showMaterialDialogInputEditText": {
+
+                        DialogUtils.showMaterialDialogInputEditText("Title",
+                                "This is a simple message", R.drawable.logo, getContext(), new IDPassCallback() {
+                                    @Override
+                                    public void onSubmit(String id, String password) {
+
+                                        DialogUtils.tst(getContext(), id + "\n" + password);
+
+                                    }
+
+                                    @Override
+                                    public void onCancel() {
+                                        DialogUtils.tst(getContext(), "Cancelled");
+                                    }
+                                });
+
+                        break;
+                    }
+
+                    case "showDialogLevel": {
+
+                        DialogUtils.showDialogLevel(getContext(),
+                                "Title",
+                                "Description",
+                                "Open It", new OpenCallback() {
+                                    @Override
+                                    public void openClicked() {
+                                        DialogUtils.tst(getContext(), "Clicked");
+                                    }
+                                });
+
+                        break;
+                    }
+
+                    case "showDialogChampion": {
+
+                        DialogUtils.showDialogChampion(getContext(),
+                                "Heading", "Title",
+                                "Description",
+                                "Open It", new OpenCallback() {
+                                    @Override
+                                    public void openClicked() {
+                                        DialogUtils.tst(getContext(), "Clicked");
+                                    }
+                                });
+
+                        break;
+                    }
+
+                    case "showDialogCongrat": {
+
+                        DialogUtils.showDialogCongrat(getContext(),
+                                "Title",
+                                "Description",
+                                "Open It", new OpenCallback() {
+                                    @Override
+                                    public void openClicked() {
+                                        DialogUtils.tst(getContext(), "Clicked");
+                                    }
+                                });
+
+                        break;
+                    }
+
+                    case "showMultiChoiceDialog": {
+
+                        DialogUtils.showMultiChoiceDialog(getContext(),
+                                "Title", list.toArray(new String[0]), "OK",
+                                "Cancel", new OnItemSelectedCallback() {
+                                    @Override
+                                    public void onSubmit(String[] items) {
+                                        DialogUtils.tst(getContext(), Arrays.toString(items));
+                                    }
+                                });
+
+                        break;
+                    }
+
+                    case "showSingleChoiceDialog": {
+
+                        DialogUtils.showSingleChoiceDialog(getContext(),
+                                "Title", list.toArray(new String[0]), new OnItemClickCallback() {
+                                    @Override
+                                    public void onClick(String item, int position) {
+                                        DialogUtils.tst(getContext(), item);
+                                    }
+                                });
+
+                        break;
+                    }
+
+                }
+            }
+        });
+
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
 
       /*  if (!PermissionUtilsX.check(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
@@ -58,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
 
         //askForPermission();
 
-        initBottomSheet();
+        //initBottomSheet();
 
     }
 
@@ -114,26 +309,68 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     public void open(View view) throws GeneralSecurityException {
 
+        showMenu();
 
-        DialogUtils.showRatingBar(getContext(),"","",null);
-     /*   List<String> list = List.of("1Share with Friends",
+        /*DialogUtils.showBottomSheetGridDialog(new GridBottomSheetDialogFragment.GridBottomSheetDialogListener() {
+            @Override
+            public void onButtonClicked(String item) {
+
+                DialogUtils.tst(getContext(), item);
+
+            }
+        }, getSupportFragmentManager());*/
+
+        //DialogUtils.showMaterialDialogInputEditText("Title", "Message", R.drawable.logo, getContext());
+
+        //DialogUtils.showMaterialDialog("Title", lorem_ipsum, R.drawable.logo, getContext());
+
+       /* DialogUtils.showMultiChoiceDialog(getContext(), "Title",
+                list.toArray(new String[0]), "Submit", "Close", new OnItemSelectedCallback() {
+                    @Override
+                    public void onSubmit(String[] items) {
+
+                        DialogUtils.tst(getContext(), Arrays.toString(items));
+                    }
+                });*/
+
+       /* DialogUtils.showSingleChoiceDialog(getContext(), "Title",
+                list.toArray(new String[0]),"Submit","Close", new OnItemClickCallback() {
+                    @Override
+                    public void onClick(String item, int position) {
+
+                        DialogUtils.tst(getContext(), item);
+                    }
+                });*/
+
+        //DialogUtils.showRatingBar(getContext(),"","",null);
+        /*List<String> list = Arrays.asList("1Share with Friends",
                 "1Bookmark1",
                 "1Add to Favourites",
-                "1More Information","Rate"
-        );
+                "1More Information", "Rate");
 
         DialogUtils.showBottomSheetDialog(getSupportFragmentManager(), list, new BSResponseSelectedInterface() {
             @Override
             public void itemClicked(String item) {
 
-                DialogUtils.tst(getContext(),item);
+                DialogUtils.tst(getContext(), item);
 
 
             }
-        });
-*/
+        });*/
+
+
+        /*DialogUtils.showDialogList(getContext(), list, new OnItemClickCallback() {
+            @Override
+            public void onClick(String item,int position) {
+
+                DialogUtils.tst(getContext(),item);
+            }
+        });*/
+
+        //DialogUtils.showDialogWithImage(getContext(),"Hi, man!", BitmapUtilX.getBitmapFromResource(getContext(),R.drawable.big_picture));
 
 
         //IntentUtils.startActivity(getContext(), FragmentViewPagerActivity.class);
@@ -312,6 +549,7 @@ public class MainActivity extends AppCompatActivity {
                 .request(101);*/
 
     }
+
 
     private void checkDatePicker() {
 

@@ -42,6 +42,11 @@ public class BottomSheetDialogUtilsx extends BottomSheetDialogFragment {
 
     }
 
+    public void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        setStyle(STYLE_NORMAL, R.style.AppBottomSheetDialogTheme);
+    }
+
     public void setCallback(BSResponseSelectedInterface bsResponseSelectedInterface) {
 
         this.responseSelectedInterface = bsResponseSelectedInterface;

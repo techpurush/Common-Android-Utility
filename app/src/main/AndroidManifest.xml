@@ -31,7 +31,7 @@
                 android:resource="@xml/pro_path" />
         </provider>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:theme="@style/Theme.MaterialComponents.Light">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
