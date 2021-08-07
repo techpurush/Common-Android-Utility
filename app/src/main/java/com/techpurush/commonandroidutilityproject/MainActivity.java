@@ -161,8 +161,10 @@ public class MainActivity extends AppCompatActivity {
 
                     case "showDialogLevel": {
 
+                        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
+
                         DialogUtils.showDialogLevel(getContext(),
-                                "Title",
+                                "Title",bitmap,
                                 "Description",
                                 "Open It", new OpenCallback() {
                                     @Override
@@ -312,7 +314,18 @@ public class MainActivity extends AppCompatActivity {
 
     public void open(View view) throws GeneralSecurityException {
 
-        showMenu();
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.img1);
+
+        DialogUtils.showDialogLevel(getContext(),
+                "Learn English Speaking", bitmap,"Voice Speaking Available, English Speaking Group",
+                "Let's See", new OpenCallback() {
+                    @Override
+                    public void openClicked() {
+                        DialogUtils.tst(getContext(),"Hi");
+                    }
+                });
+
+        //showMenu();
 
         /*DialogUtils.showBottomSheetGridDialog(new GridBottomSheetDialogFragment.GridBottomSheetDialogListener() {
             @Override

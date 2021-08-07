@@ -1,71 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="450dp"
+    android:layout_gravity="center"
     app:cardBackgroundColor="@android:color/white"
     app:cardCornerRadius="@dimen/spacing_medium"
     app:cardElevation="3dp"
     app:cardUseCompatPadding="true">
 
     <LinearLayout
-        android:layout_width="250dp"
-        android:layout_height="400dp"
-        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusableInTouchMode="true"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="@dimen/spacing_large"
             android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
             <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
                 android:id="@+id/imageView"
-                app:srcCompat="@drawable/badge_reward" />
+                android:layout_width="match_parent"
+                android:scaleType="centerCrop"
+                android:layout_height="@dimen/_200sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/cover" />
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_mlarge"
-                android:text="New achievement!"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:gravity="center"
+                android:text="Learn English Speaking"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                android:textColor="@color/blue_grey_800" />
+                android:textColor="@color/blue_grey_800"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
             <TextView
                 android:id="@+id/description"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_medium"
-                android:gravity="center"
-                android:text="You reached level 8 badge."
+                android:layout_marginTop="8dp"
+                android:text="g Groupg Grog Groupupg Group"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                android:textColor="@color/blue_grey_500" />
+                android:textColor="@color/blue_grey_500"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/title"
+                app:layout_constraintStart_toStartOf="@+id/title"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewOpen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:id="@+id/cardViewOpen"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_25sdp"
             app:cardBackgroundColor="#ED2F59"
             app:cardCornerRadius="@dimen/_10sdp"
             app:cardUseCompatPadding="true">
 
             <TextView
+                android:id="@+id/btnText"
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_8sdp"
                 android:gravity="center"
                 android:text="Open"
-                android:id="@+id/btnText"
                 android:textColor="@color/grey_5"
                 android:textSize="16sp"
                 android:textStyle="bold" />

@@ -194,7 +194,8 @@ public class DialogUtils {
     }
 
 
-    public static void showDialogLevel(Context context, String title, String description, String btnText, OpenCallback openCallback) {
+    public static void showDialogLevel(Context context, String title, Bitmap bitmap,
+                                       String description, String btnText, OpenCallback openCallback) {
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
         dialog.setContentView(R.layout.dialog_achievement_level);
@@ -202,6 +203,10 @@ public class DialogUtils {
         TextView titleTV = dialog.findViewById(R.id.title);
         TextView descriptionTV = dialog.findViewById(R.id.description);
         TextView btnTextTV = dialog.findViewById(R.id.btnText);
+
+        ImageView imageView = dialog.findViewById(R.id.imageView);
+
+        imageView.setImageBitmap(bitmap);
 
         titleTV.setText(title);
         descriptionTV.setText(description);
