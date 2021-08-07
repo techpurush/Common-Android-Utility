@@ -80,7 +80,7 @@ public class DatabaseHelperUtils extends SQLiteOpenHelper {
     public Cursor read(String orderBy) {
 
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + this.tableName + " ORDER BY "+orderBy+" DESC";
+        String selectQuery = "SELECT  * FROM " + this.tableName + " ORDER BY " + orderBy + " DESC";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -106,7 +106,13 @@ public class DatabaseHelperUtils extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void delete(String columnName,String columnValue) {
+    public void delete() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("Delete from " + this.tableName);
+        db.close();
+    }
+
+    public void delete(String columnName, String columnValue) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(this.tableName, columnName + " = ?",
                 new String[]{columnValue});

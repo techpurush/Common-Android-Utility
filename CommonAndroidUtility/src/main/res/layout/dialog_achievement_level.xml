@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="300dp"
-    android:layout_height="450dp"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
     app:cardBackgroundColor="@android:color/white"
     app:cardCornerRadius="@dimen/spacing_medium"
@@ -15,33 +15,30 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusableInTouchMode="true"
+            android:orientation="vertical"
             android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
-                android:scaleType="centerCrop"
                 android:layout_height="@dimen/_200sdp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/cover"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:src="@drawable/cover" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/title"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_margin="@dimen/_10sdp"
                 android:gravity="center"
-                android:text="Learn English Speaking"
+                android:text="Learn EnglishEnglishEnglishEnglishEnglishEnglish Speaking"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 android:textColor="@color/blue_grey_800"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -50,10 +47,10 @@
 
             <TextView
                 android:id="@+id/description"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="g Groupg Grog Groupupg Group"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="g Groupg Grog GroupupgGroupupgGroupupgGroupupgGroupupg Group"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 android:textColor="@color/blue_grey_500"
                 android:textSize="16sp"
@@ -62,16 +59,17 @@
                 app:layout_constraintStart_toStartOf="@+id/title"
                 app:layout_constraintTop_toBottomOf="@+id/title" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardViewOpen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             app:cardBackgroundColor="#ED2F59"
             app:cardCornerRadius="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
             app:cardUseCompatPadding="true">
 
             <TextView
