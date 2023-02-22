@@ -38,7 +38,7 @@ public class ExoPlayerUtils {
 
 
     public static void setupExoPlayer(PlayerView playerView, String videoURL,
-                                      SimpleExoPlayer simpleExoPlayer, ImageView btnFscreen, boolean flag, ProgressBar progressBar, Activity activity) {
+                                      SimpleExoPlayer simpleExoPlayer, ProgressBar progressBar, Activity activity) {
 
         activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
