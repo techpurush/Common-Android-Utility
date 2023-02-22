@@ -32,7 +32,6 @@ import com.techpurush.commonandroidutility.DateTimePicker.TimePickedInterface;
 import com.techpurush.commonandroidutility.DateTimePicker.TimePicker;
 import com.techpurush.commonandroidutility.DateTimePicker.Timer;
 import com.techpurush.commonandroidutility.DialogUtils;
-import com.techpurush.commonandroidutility.Exo.ExoFragment;
 import com.techpurush.commonandroidutility.IntentUtils;
 import com.techpurush.commonandroidutility.Interfaces.IDPassCallback;
 import com.techpurush.commonandroidutility.Interfaces.OKCancelCallback;
@@ -258,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
 
         //initBottomSheet();
 
-        ExoFragment exoFragment=new ExoFragment();
+//        ExoFragment exoFragment=new ExoFragment();
 
 
 //        getSupportFragmentManager().beginTransaction().replace(R.id.cont2,new ExoFragment()).commit();

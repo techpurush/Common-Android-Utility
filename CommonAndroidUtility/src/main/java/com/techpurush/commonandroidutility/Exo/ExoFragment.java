@@ -44,7 +44,7 @@ import com.techpurush.commonandroidutility.R;
  * Use the {@link ExoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ExoFragment extends Fragment {
+class ExoFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
