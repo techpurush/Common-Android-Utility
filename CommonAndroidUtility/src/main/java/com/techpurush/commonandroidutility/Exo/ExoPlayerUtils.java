@@ -35,7 +35,7 @@ import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 public class ExoPlayerUtils {
 
     public static void setupExoPlayer(PlayerView playerView, String videoURL,
-                                      SimpleExoPlayer simpleExoPlayer, Activity activity) {
+                                      SimpleExoPlayer simpleExoPlayer,ProgressBar progressBar, Activity activity) {
 
         activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -59,6 +59,76 @@ public class ExoPlayerUtils {
         simpleExoPlayer.prepare(mediaSource);
 
         simpleExoPlayer.setPlayWhenReady(true);
+
+        simpleExoPlayer.addListener(new Player.EventListener() {
+            @Override
+            public void onTimelineChanged(Timeline timeline, @Nullable Object manifest, int reason) {
+
+            }
+
+            @Override
+            public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
+
+            }
+
+            @Override
+            public void onLoadingChanged(boolean isLoading) {
+
+            }
+
+            @Override
+            public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
+
+//                if (!playWhenReady){
+//                    progressBar.setVisibility(View.VISIBLE);
+//                }else{
+//
+//                    progressBar.setVisibility(View.GONE);
+//                }
+
+//                DialogUtils.tst(getContext2(),playWhenReady);
+
+                if (playbackState == Player.STATE_BUFFERING) {
+
+                    progressBar.setVisibility(View.VISIBLE);
+
+                } else if (playbackState == Player.STATE_READY) {
+
+                    progressBar.setVisibility(View.GONE);
+
+                }
+            }
+
+            @Override
+            public void onRepeatModeChanged(int repeatMode) {
+
+            }
+
+            @Override
+            public void onShuffleModeEnabledChanged(boolean shuffleModeEnabled) {
+
+            }
+
+            @Override
+            public void onPlayerError(ExoPlaybackException error) {
+
+            }
+
+            @Override
+            public void onPositionDiscontinuity(int reason) {
+
+            }
+
+            @Override
+            public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
+
+            }
+
+            @Override
+            public void onSeekProcessed() {
+
+            }
+        });
 
 
        /* simpleExoPlayer.addListener(new Player.EventListener() {
