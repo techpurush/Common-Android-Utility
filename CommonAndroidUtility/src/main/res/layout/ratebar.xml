@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardBackgroundColor="@color/White"
+    app:cardCornerRadius="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/btn_bg1"
+            android:padding="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+            app:layout_constraintVertical_bias="0.0">
+
+            <ImageView
+                android:id="@+id/ivShare"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/share"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/ivRate"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/ivRate"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/rate"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ivShare"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/ivShareWA"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/ivShareWA"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/wa"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ivRate"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/aclonica"
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="@string/how_was_your_experience_with_the_app"
+                android:textColor="#3E3838"
+                android:textSize="16sp"
+                android:typeface="monospace" />
+
+            <com.hsalf.smilerating.SmileRating
+                android:id="@+id/smile_rating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvTitle"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/tvTitle2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/smile_rating"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/autour_one"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/do_you_really_want_to_exit"
+                android:textColor="#3E3838"
+                android:textSize="16sp"
+                android:typeface="monospace" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvYes"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/btn_bg"
+            android:fontFamily="@font/aclonica"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Yes"
+            android:textColor="#605B5B"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.735"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/tvNo"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_bg"
+            android:fontFamily="@font/aclonica"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="No"
+            android:textColor="#605B5B"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tvYes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvYes"
+            app:layout_constraintTop_toTopOf="@+id/tvYes"
+            app:layout_constraintVertical_bias="1.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

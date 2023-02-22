@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="4dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:srcCompat="@drawable/shape_swipe" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Open in"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16sp" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnCount="3"
+            android:rowCount="2">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_marginBottom="26dp"
+                android:gravity="center">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnNotes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:drawableTop="@drawable/ic_notes"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@android:color/darker_gray"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:text="Notes"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_marginBottom="26dp"
+                android:gravity="center">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnMessenger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:drawableTop="@drawable/ic_toast_snackbar"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@android:color/darker_gray"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:text="Messenger"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_marginBottom="26dp"
+                android:gravity="center">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnMail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:drawableTop="@drawable/ic_email"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@android:color/darker_gray"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:text="Mail"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_marginBottom="26dp"
+                android:gravity="center">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnDocs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:drawableTop="@drawable/ic_docs"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@android:color/darker_gray"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:text="Docs"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_marginBottom="26dp"
+                android:gravity="center">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnFiles"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:drawableTop="@drawable/ic_files"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@android:color/darker_gray"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:text="Files"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </GridLayout>
+    </LinearLayout>
+</LinearLayout>
