@@ -32,6 +32,7 @@ import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.upstream.BandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
+import com.techpurush.commonandroidutility.ActivityUtils;
 import com.techpurush.commonandroidutility.R;
 
 public class ExoPlayerUtils {
@@ -40,7 +41,7 @@ public class ExoPlayerUtils {
     public static void setupExoPlayer(PlayerView playerView, String videoURL,
                                       SimpleExoPlayer simpleExoPlayer, ProgressBar progressBar, Activity activity) {
 
-        activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        ActivityUtils.setFullScreen(activity);
 
         LoadControl loadControl = new DefaultLoadControl();
 
