@@ -2,7 +2,7 @@ package com.techpurush.commonandroidutility.Sqlite;
 
 import android.content.Context;
 
-import com.techpurush.commonandroidutility.DialogUtils;
+import com.techpurush.commonandroidutility.CustomDialogs.DialogUtils;
 
 public class SqliteUtils {
 

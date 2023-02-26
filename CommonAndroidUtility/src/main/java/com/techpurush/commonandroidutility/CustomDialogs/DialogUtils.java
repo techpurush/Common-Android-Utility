@@ -1,4 +1,4 @@
-package com.techpurush.commonandroidutility;
+package com.techpurush.commonandroidutility.CustomDialogs;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,16 +46,78 @@ import com.techpurush.commonandroidutility.Interfaces.OKCancelCallback;
 import com.techpurush.commonandroidutility.Interfaces.OnItemClickCallback;
 import com.techpurush.commonandroidutility.Interfaces.OnItemSelectedCallback;
 import com.techpurush.commonandroidutility.Interfaces.OpenCallback;
+import com.techpurush.commonandroidutility.R;
 import com.techpurush.commonandroidutility.Utils.Constants;
+import com.techpurush.commonandroidutility.Utils.ViewAnimation;
+import com.techpurush.commonandroidutility.YesOrNoInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DialogUtils {
 
+
     private static String single_choice_selected;
 
-    public static void showTermOfServiceDialog(Context context,String title,String subtitle, String message, OKCancelCallback okCancelCallback) {
+//    private final static int LOADING_DURATION = 3500;
+
+    public static class DotsProgressbar {
+
+        Context context;
+        LinearLayout lyt_progress;
+        Dialog dialog;
+
+        public static DotsProgressbar Builder(Context context) {
+
+            DotsProgressbar bouncingDots = new DotsProgressbar();
+            bouncingDots.context = context;
+
+            return bouncingDots;
+        }
+
+        public DotsProgressbar show(int typeFlag) {
+
+            dialog = new Dialog(context, R.style.dialogStyle);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+            if (typeFlag == 2)
+                dialog.setContentView(R.layout.layout_bouncedotsgrow);
+            else if (typeFlag==3)
+                dialog.setContentView(R.layout.layout_bouncedotsfade);
+            else
+                dialog.setContentView(R.layout.layout_bouncedots);
+
+            lyt_progress = (LinearLayout) dialog.findViewById(R.id.lyt_progress);
+            lyt_progress.setVisibility(View.VISIBLE);
+            lyt_progress.setAlpha(1.0f);
+
+//            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            dialog.setCancelable(false);
+
+            dialog.show();
+
+            return this;
+        }
+
+        public void dismiss() {
+
+            if (lyt_progress != null)
+                ViewAnimation.fadeOut(lyt_progress);
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (dialog != null)
+                        dialog.dismiss();
+                }
+            }, 400);
+
+
+        }
+
+
+    }
+
+    public static void showTermOfServiceDialog(Context context, String title, String subtitle, String message, OKCancelCallback okCancelCallback) {
 
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
@@ -85,8 +149,8 @@ public class DialogUtils {
         ((Button) dialog.findViewById(R.id.bt_accept)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               okCancelCallback.okClicked();
-               dialog.dismiss();
+                okCancelCallback.okClicked();
+                dialog.dismiss();
             }
         });
 

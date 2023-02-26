@@ -10,7 +10,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.Chronometer;
 
-import com.techpurush.commonandroidutility.DialogUtils;
 import com.techpurush.commonandroidutility.R;
 
 public class Timer {

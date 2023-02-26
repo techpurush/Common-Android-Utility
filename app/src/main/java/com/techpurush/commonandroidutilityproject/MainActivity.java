@@ -2,48 +2,36 @@ package com.techpurush.commonandroidutilityproject;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.techpurush.commonandroidutility.AESCryptDecryptUtils;
-import com.techpurush.commonandroidutility.BackgroundWork.BackgroundWorkUtilsX;
-import com.techpurush.commonandroidutility.BackgroundWork.MyWorkListener;
+import com.techpurush.commonandroidutility.Adapters.SingleItemAdapter;
 import com.techpurush.commonandroidutility.BitmapUtilX;
 import com.techpurush.commonandroidutility.BottomsheetDialog.BSResponseSelectedInterface;
-import com.techpurush.commonandroidutility.BottomsheetDialog.BottomSheetDialogUtilsx;
 import com.techpurush.commonandroidutility.BottomsheetDialog.GridBottomSheetDialogFragment;
+import com.techpurush.commonandroidutility.CustomDialogs.SnackMaker;
+import com.techpurush.commonandroidutility.CustomDialogs.ToastMaker;
 import com.techpurush.commonandroidutility.DateTimePicker.DatePickedInterface;
 import com.techpurush.commonandroidutility.DateTimePicker.DatePicker;
 import com.techpurush.commonandroidutility.DateTimePicker.TimeEllapsedInterface;
 import com.techpurush.commonandroidutility.DateTimePicker.TimePickedInterface;
 import com.techpurush.commonandroidutility.DateTimePicker.TimePicker;
 import com.techpurush.commonandroidutility.DateTimePicker.Timer;
-import com.techpurush.commonandroidutility.DialogUtils;
-import com.techpurush.commonandroidutility.IntentUtils;
+import com.techpurush.commonandroidutility.CustomDialogs.DialogUtils;
 import com.techpurush.commonandroidutility.Interfaces.IDPassCallback;
 import com.techpurush.commonandroidutility.Interfaces.OKCancelCallback;
 import com.techpurush.commonandroidutility.Interfaces.OnItemClickCallback;
 import com.techpurush.commonandroidutility.Interfaces.OnItemSelectedCallback;
 import com.techpurush.commonandroidutility.Interfaces.OpenCallback;
-import com.techpurush.commonandroidutility.Notifications.QuickNotification;
-import com.techpurush.commonandroidutility.Slider.FragmentViewPagerActivity;
-import com.techpurush.commonandroidutility.Slider.ViewsSliderActivity;
 
 import java.security.GeneralSecurityException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -67,6 +55,52 @@ public class MainActivity extends AppCompatActivity {
             "showMultiChoiceDialog",
             "showSingleChoiceDialog");
 
+    public void DoOps(View view) {
+
+        SnackMaker.showSnackInfo(getContext(),"Nice to meet you.");
+
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+//        Dialog dialog = DialogUtils.showProgressBouncingDots(getContext());
+
+//        DialogUtils.DotsProgressbar bouncingDots = DialogUtils.DotsProgressbar.Builder(getContext()).show(3);
+
+
+       /* new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                bouncingDots.dismiss();
+
+//                ToastMaker.showCardInfo(getContext(), "Nice to meet you.");
+
+
+
+            }
+        }, 3500);*/
+
+
+      /*  if (!PermissionUtilsX.check(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+            //   PermissionUtilsX.request(this,Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        }*/
+
+        //askForPermission();
+
+        //initBottomSheet();
+
+//        ExoFragment exoFragment=new ExoFragment();
+
+
+//        getSupportFragmentManager().beginTransaction().replace(R.id.cont2,new ExoFragment()).commit();
+
+
+    }
 
     private void showMenu() {
 
@@ -164,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
                         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
 
                         DialogUtils.showDialogLevel(getContext(),
-                                "Title",bitmap,
+                                "Title", bitmap,
                                 "Description",
                                 "Open It", new OpenCallback() {
                                     @Override
@@ -240,31 +274,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-
-
-      /*  if (!PermissionUtilsX.check(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-
-            //   PermissionUtilsX.request(this,Manifest.permission.WRITE_EXTERNAL_STORAGE);
-
-        }*/
-
-        //askForPermission();
-
-        //initBottomSheet();
-
-//        ExoFragment exoFragment=new ExoFragment();
-
-
-//        getSupportFragmentManager().beginTransaction().replace(R.id.cont2,new ExoFragment()).commit();
-
-
-
-    }
 
     private void initBottomSheet() {
 
@@ -324,11 +333,11 @@ public class MainActivity extends AppCompatActivity {
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.img1);
 
         DialogUtils.showDialogLevel(getContext(),
-                "Learn English Speaking", bitmap,"Voice Speaking Available, English Speaking Group",
+                "Learn English Speaking", bitmap, "Voice Speaking Available, English Speaking Group",
                 "Let's See", new OpenCallback() {
                     @Override
                     public void openClicked() {
-                        DialogUtils.tst(getContext(),"Hi");
+                        DialogUtils.tst(getContext(), "Hi");
                     }
                 });
 
@@ -709,4 +718,6 @@ public class MainActivity extends AppCompatActivity {
     private Activity getContext() {
         return this;
     }
+
+
 }

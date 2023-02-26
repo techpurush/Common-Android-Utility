@@ -4,9 +4,20 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/drawable/ic_baseline_forward_10_24.xml" value="0.21041666666666667" />
+        <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/drawable/ic_done.xml" value="0.21041666666666667" />
+        <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/drawable/ic_error_outline.xml" value="0.21041666666666667" />
         <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/layout/custom_controller.xml" value="0.19427083333333334" />
         <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/layout/fragment_exo.xml" value="0.19427083333333334" />
+        <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/layout/layout_bouncedots.xml" value="0.19427083333333334" />
+        <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/layout/layout_bouncedotsfade.xml" value="0.19427083333333334" />
+        <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/layout/layout_bouncedotsgrow.xml" value="0.19427083333333334" />
         <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/layout/layout_lottie2.xml" value="0.11851851851851852" />
+        <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/layout/snackbar_icon_text.xml" value="0.19427083333333334" />
+        <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/layout/snackbar_toast_floating.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/layout/snackbar_toast_floating_dark.xml" value="0.19427083333333334" />
+        <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/layout/snackbar_toast_floating_image.xml" value="0.19427083333333334" />
+        <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/layout/toast_custom.xml" value="0.19427083333333334" />
+        <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/layout/toast_icon_text.xml" value="0.19427083333333334" />
         <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/app/src/main/res/layout/activity_main.xml" value="0.19427083333333334" />
         <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/app/src/main/res/layout/activity_test.xml" value="0.1" />
       </map>
