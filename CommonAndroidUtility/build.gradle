@@ -27,6 +27,8 @@ android {
     }
 }
 
+def lottieVersion = "5.2.0"
+
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
@@ -51,6 +53,8 @@ dependencies {
     implementation 'com.balysv:material-ripple:1.0.2'
 
     implementation 'com.google.android.exoplayer:exoplayer:2.7.3'
+
+    implementation "com.airbnb.android:lottie:$lottieVersion"
 
 
 }
