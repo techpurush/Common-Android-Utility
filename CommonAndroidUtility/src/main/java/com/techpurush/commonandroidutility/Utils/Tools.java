@@ -39,11 +39,8 @@ import androidx.core.widget.NestedScrollView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
-import com.google.android.gms.maps.GoogleMap;
 import com.google.android.material.bottomappbar.BottomAppBar;
-import com.material.components.R;
-import com.material.components.activity.ActivityWebView;
-import com.material.components.model.DeviceInfo;
+import com.techpurush.commonandroidutility.R;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -189,25 +186,6 @@ public class Tools {
     public static int dpToPx(Context c, int dp) {
         Resources r = c.getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
-    }
-
-    public static GoogleMap configActivityMaps(GoogleMap googleMap) {
-        // set map type
-        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        // Enable / Disable zooming controls
-        googleMap.getUiSettings().setZoomControlsEnabled(false);
-
-        // Enable / Disable Compass icon
-        googleMap.getUiSettings().setCompassEnabled(true);
-        // Enable / Disable Rotate gesture
-        googleMap.getUiSettings().setRotateGesturesEnabled(true);
-        // Enable / Disable zooming functionality
-        googleMap.getUiSettings().setZoomGesturesEnabled(true);
-
-        googleMap.getUiSettings().setScrollGesturesEnabled(true);
-        googleMap.getUiSettings().setMapToolbarEnabled(true);
-
-        return googleMap;
     }
 
     public static void copyToClipboard(Context context, String data) {
@@ -372,35 +350,6 @@ public class Tools {
     }
 
 
-    public static String getVersionName(Context ctx) {
-        try {
-            PackageManager manager = ctx.getPackageManager();
-            PackageInfo info = manager.getPackageInfo(ctx.getPackageName(), 0);
-            return ctx.getString(R.string.app_version) + " " + info.versionName;
-        } catch (PackageManager.NameNotFoundException e) {
-            return ctx.getString(R.string.version_unknown);
-        }
-    }
-
-    public static String getVersionNamePlain(Context ctx) {
-        try {
-            PackageManager manager = ctx.getPackageManager();
-            PackageInfo info = manager.getPackageInfo(ctx.getPackageName(), 0);
-            return info.versionName;
-        } catch (PackageManager.NameNotFoundException e) {
-            return ctx.getString(R.string.version_unknown);
-        }
-    }
-
-    public static DeviceInfo getDeviceInfo(Context context) {
-        DeviceInfo deviceInfo = new DeviceInfo();
-        deviceInfo.device = Tools.getDeviceName();
-        deviceInfo.os_version = Tools.getAndroidVersion();
-        deviceInfo.app_version = Tools.getVersionCode(context) + " (" + Tools.getVersionNamePlain(context) + ")";
-        deviceInfo.serial = Tools.getDeviceID(context);
-        return deviceInfo;
-    }
-
     public static String getDeviceID(Context context) {
         String deviceID = Build.SERIAL;
         if (deviceID == null || deviceID.trim().isEmpty() || deviceID.equals("unknown")) {
@@ -447,14 +396,7 @@ public class Tools {
         }
     }
 
-    public static void openInAppBrowser(Activity activity, String url, boolean from_notif) {
-        url = appendQuery(url, "t=" + System.currentTimeMillis());
-        if (!URLUtil.isValidUrl(url)) {
-            Toast.makeText(activity, "Ops, Cannot open url", Toast.LENGTH_LONG).show();
-            return;
-        }
-        ActivityWebView.navigate(activity, url, from_notif);
-    }
+
 
     public static String getHostName(String url) {
         try {
