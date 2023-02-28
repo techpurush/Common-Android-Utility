@@ -10,8 +10,11 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.slider.RangeSlider;
+import com.google.android.material.slider.Slider;
 import com.techpurush.commonandroidutility.Adapters.SingleItemAdapter;
 import com.techpurush.commonandroidutility.BitmapUtilX;
 import com.techpurush.commonandroidutility.BottomsheetDialog.BSResponseSelectedInterface;
@@ -20,6 +23,9 @@ import com.techpurush.commonandroidutility.CustomDialogs.SnackMaker;
 import com.techpurush.commonandroidutility.CustomDialogs.ToastMaker;
 import com.techpurush.commonandroidutility.DateTimePicker.DatePickedInterface;
 import com.techpurush.commonandroidutility.DateTimePicker.DatePicker;
+import com.techpurush.commonandroidutility.DateTimePicker.PickedDateInterface;
+import com.techpurush.commonandroidutility.DateTimePicker.PickedDateRangeInterface;
+import com.techpurush.commonandroidutility.DateTimePicker.PickedTimeInterface;
 import com.techpurush.commonandroidutility.DateTimePicker.TimeEllapsedInterface;
 import com.techpurush.commonandroidutility.DateTimePicker.TimePickedInterface;
 import com.techpurush.commonandroidutility.DateTimePicker.TimePicker;
@@ -30,9 +36,11 @@ import com.techpurush.commonandroidutility.Interfaces.OKCancelCallback;
 import com.techpurush.commonandroidutility.Interfaces.OnItemClickCallback;
 import com.techpurush.commonandroidutility.Interfaces.OnItemSelectedCallback;
 import com.techpurush.commonandroidutility.Interfaces.OpenCallback;
+import com.techpurush.commonandroidutility.lottieutils.SliderUtils;
 
 import java.security.GeneralSecurityException;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 
@@ -57,7 +65,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void DoOps(View view) {
 
-        SnackMaker.showSnackInfo(getContext(),"Nice to meet you.");
+//        SnackMaker.showSnackInfo(getContext(),"Nice to meet you.");
+
+        TimePicker.showTimePickerMaterial(getSupportFragmentManager(), new PickedTimeInterface() {
+            @Override
+            public void pickedTime(int hour, int minute) {
+                ToastMaker.showLightCard(getContext(),hour+":"+minute,"");
+            }
+        });
 
     }
 
@@ -65,6 +80,40 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        RelativeLayout relativeLayout = findViewById(R.id.cont2);
+        Slider slider = SliderUtils.getSlider(this);
+        slider.setValueFrom(30);
+        slider.setValue(40);
+        slider.setValueTo(90);
+        slider.setStepSize(10);
+        RangeSlider rangeSlider = SliderUtils.getRangeSlider(this);
+        rangeSlider.setValueFrom(0);
+        rangeSlider.setValueTo(100);
+        rangeSlider.setStepSize(10);
+        rangeSlider.setValues(20f,60f);
+
+
+
+        relativeLayout.addView(slider);
+        relativeLayout.addView(rangeSlider);
+
+        rangeSlider.addOnChangeListener(new RangeSlider.OnChangeListener() {
+            @Override
+            public void onValueChange(@NonNull RangeSlider slider, float value, boolean fromUser) {
+                SnackMaker.showSnackInfo(getContext(),Arrays.toString(slider.getValues().toArray(new Float[0])));
+            }
+        });
+
+        slider.addOnChangeListener(new Slider.OnChangeListener() {
+            @Override
+            public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
+
+                ToastMaker.showCardInfo(getContext(),value+"");
+
+//                slider.setForm
+            }
+        });
 
 //        Dialog dialog = DialogUtils.showProgressBouncingDots(getContext());
 

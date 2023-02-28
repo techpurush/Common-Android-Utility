@@ -9,11 +9,37 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 
+import androidx.fragment.app.FragmentManager;
+
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
 import com.techpurush.commonandroidutility.R;
+
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.util.Date;
 
 public class TimePicker {
 
     static String hour1, minute1, day1;
+
+    public static void showTimePickerMaterial(FragmentManager fragmentManager, PickedTimeInterface pickedTimeInterface) {
+
+        MaterialTimePicker materialTimePicker = new MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_12H).build();
+
+        materialTimePicker.addOnPositiveButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                pickedTimeInterface.pickedTime(materialTimePicker.getHour(), materialTimePicker.getMinute());
+
+            }
+        });
+
+
+        materialTimePicker.show(fragmentManager, null);
+    }
 
     public static void showTimePicker(Context context, TimePickedInterface timePickedInterface) {
 

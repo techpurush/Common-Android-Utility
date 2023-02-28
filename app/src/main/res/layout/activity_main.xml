@@ -11,6 +11,7 @@
         android:id="@+id/cont2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_100sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="@dimen/_50sdp"
@@ -19,11 +20,10 @@
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:theme="@style/Button.Primary.Borderless"
-            android:text="OK"
-            android:onClick="DoOps"
             android:layout_centerInParent="true"
-            />
+            android:onClick="DoOps"
+            android:text="OK"
+            android:theme="@style/Button.Primary.Borderless" />
 
     </RelativeLayout>
 

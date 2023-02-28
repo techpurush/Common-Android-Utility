@@ -21,6 +21,8 @@
         <item name="mrl_rippleAlpha">0.2</item>
     </style>
 
+
+
     <style name="RippleStyleBlack" parent="RippleStyleWhite">
         <item name="mrl_rippleColor">#8096989A</item>
     </style>
