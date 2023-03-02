@@ -685,5 +685,6 @@
     <dimen name="_minus7sdp">-7dp</dimen>
     <dimen name="_minus8sdp">-8dp</dimen>
     <dimen name="_minus9sdp">-9dp</dimen>
+    <dimen name="switch_size">28dp</dimen>
 
 </resources>

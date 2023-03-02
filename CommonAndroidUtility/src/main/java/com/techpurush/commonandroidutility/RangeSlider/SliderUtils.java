@@ -1,4 +1,4 @@
-package com.techpurush.commonandroidutility.lottieutils;
+package com.techpurush.commonandroidutility.RangeSlider;
 
 import android.app.Activity;
 

@@ -2,6 +2,8 @@ package com.techpurush.commonandroidutilityproject;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.constraintlayout.utils.widget.ImageFilterView;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -10,37 +12,39 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.slider.RangeSlider;
 import com.google.android.material.slider.Slider;
-import com.techpurush.commonandroidutility.Adapters.SingleItemAdapter;
-import com.techpurush.commonandroidutility.BitmapUtilX;
 import com.techpurush.commonandroidutility.BottomsheetDialog.BSResponseSelectedInterface;
 import com.techpurush.commonandroidutility.BottomsheetDialog.GridBottomSheetDialogFragment;
+import com.techpurush.commonandroidutility.Button.ButtonUtils;
+import com.techpurush.commonandroidutility.Button.FabUtils;
 import com.techpurush.commonandroidutility.CustomDialogs.SnackMaker;
 import com.techpurush.commonandroidutility.CustomDialogs.ToastMaker;
 import com.techpurush.commonandroidutility.DateTimePicker.DatePickedInterface;
 import com.techpurush.commonandroidutility.DateTimePicker.DatePicker;
-import com.techpurush.commonandroidutility.DateTimePicker.PickedDateInterface;
-import com.techpurush.commonandroidutility.DateTimePicker.PickedDateRangeInterface;
 import com.techpurush.commonandroidutility.DateTimePicker.PickedTimeInterface;
 import com.techpurush.commonandroidutility.DateTimePicker.TimeEllapsedInterface;
 import com.techpurush.commonandroidutility.DateTimePicker.TimePickedInterface;
 import com.techpurush.commonandroidutility.DateTimePicker.TimePicker;
 import com.techpurush.commonandroidutility.DateTimePicker.Timer;
 import com.techpurush.commonandroidutility.CustomDialogs.DialogUtils;
+import com.techpurush.commonandroidutility.ImageV.CircularImageUtils;
 import com.techpurush.commonandroidutility.Interfaces.IDPassCallback;
 import com.techpurush.commonandroidutility.Interfaces.OKCancelCallback;
 import com.techpurush.commonandroidutility.Interfaces.OnItemClickCallback;
 import com.techpurush.commonandroidutility.Interfaces.OnItemSelectedCallback;
 import com.techpurush.commonandroidutility.Interfaces.OpenCallback;
-import com.techpurush.commonandroidutility.lottieutils.SliderUtils;
+import com.techpurush.commonandroidutility.RangeSlider.SliderUtils;
 
 import java.security.GeneralSecurityException;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 
@@ -97,6 +101,34 @@ public class MainActivity extends AppCompatActivity {
 
         relativeLayout.addView(slider);
         relativeLayout.addView(rangeSlider);
+
+        ImageButton fabButton = FabUtils.getFabButton(getContext(),getResources().getDrawable(R.drawable.ic_baseline_emoji_people_50));
+
+        ImageFilterView circularImageView = CircularImageUtils.getCircularImageView(getContext(),getResources().getDrawable(R.drawable.pic1));
+
+        LinearLayout linearLayout = relativeLayout.findViewById(R.id.ivCir);
+
+//        linearLayout.addView(circularImageView);
+
+        CheckBox checkbox = ButtonUtils.getLikeCheckbox(getContext(),getResources().getDrawable(R.drawable.selector_favorite));
+
+        linearLayout.addView(checkbox);
+
+        SwitchCompat switchCompat = ButtonUtils.getSwitchCompat(getContext());
+        
+        switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                SnackMaker.showSnackInfo(getContext(),isChecked+"");
+            }
+        });
+
+        relativeLayout.addView(switchCompat);
+
+//        relativeLayout.addView(circularImageView);
+
+//        relativeLayout.addView(fabButton);
 
         rangeSlider.addOnChangeListener(new RangeSlider.OnChangeListener() {
             @Override
