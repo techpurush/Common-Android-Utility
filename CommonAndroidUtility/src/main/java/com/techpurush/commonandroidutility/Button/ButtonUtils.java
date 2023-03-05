@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.widget.SwitchCompat;
 
+import com.google.android.material.chip.Chip;
 import com.techpurush.commonandroidutility.R;
 import com.techpurush.commonandroidutility.Utils.FloatingActionButtonsController;
 
@@ -29,6 +30,17 @@ public class ButtonUtils {
 
         SwitchCompat view = (SwitchCompat) activity.getLayoutInflater()
                 .inflate(R.layout.layout_switchcompat, null, false);
+
+
+        return view;
+
+
+    }
+
+    public static Chip getChipWidget(Activity activity) {
+
+        Chip view = (Chip) activity.getLayoutInflater()
+                .inflate(R.layout.layout_chips, null, false);
 
 
         return view;

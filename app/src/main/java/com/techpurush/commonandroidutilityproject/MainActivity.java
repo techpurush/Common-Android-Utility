@@ -7,6 +7,7 @@ import androidx.constraintlayout.utils.widget.ImageFilterView;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.chip.Chip;
 import com.google.android.material.slider.RangeSlider;
 import com.google.android.material.slider.Slider;
 import com.techpurush.commonandroidutility.BottomsheetDialog.BSResponseSelectedInterface;
@@ -74,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         TimePicker.showTimePickerMaterial(getSupportFragmentManager(), new PickedTimeInterface() {
             @Override
             public void pickedTime(int hour, int minute) {
-                ToastMaker.showLightCard(getContext(),hour+":"+minute,"");
+                ToastMaker.showLightCard(getContext(), hour + ":" + minute, "");
             }
         });
 
@@ -95,36 +97,41 @@ public class MainActivity extends AppCompatActivity {
         rangeSlider.setValueFrom(0);
         rangeSlider.setValueTo(100);
         rangeSlider.setStepSize(10);
-        rangeSlider.setValues(20f,60f);
-
+        rangeSlider.setValues(20f, 60f);
 
 
         relativeLayout.addView(slider);
         relativeLayout.addView(rangeSlider);
 
-        ImageButton fabButton = FabUtils.getFabButton(getContext(),getResources().getDrawable(R.drawable.ic_baseline_emoji_people_50));
+        ImageButton fabButton = FabUtils.getFabButton(getContext(), getResources().getDrawable(R.drawable.ic_baseline_emoji_people_50));
 
-        ImageFilterView circularImageView = CircularImageUtils.getCircularImageView(getContext(),getResources().getDrawable(R.drawable.pic1));
+        ImageFilterView circularImageView = CircularImageUtils.getCircularImageView(getContext(), getResources().getDrawable(R.drawable.pic1));
 
         LinearLayout linearLayout = relativeLayout.findViewById(R.id.ivCir);
 
 //        linearLayout.addView(circularImageView);
 
-        CheckBox checkbox = ButtonUtils.getLikeCheckbox(getContext(),getResources().getDrawable(R.drawable.selector_favorite));
+        CheckBox checkbox = ButtonUtils.getLikeCheckbox(getContext(), getResources().getDrawable(R.drawable.selector_favorite));
 
         linearLayout.addView(checkbox);
 
         SwitchCompat switchCompat = ButtonUtils.getSwitchCompat(getContext());
-        
+
         switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                SnackMaker.showSnackInfo(getContext(),isChecked+"");
+                SnackMaker.showSnackInfo(getContext(), isChecked + "");
             }
         });
 
         relativeLayout.addView(switchCompat);
+
+        Chip chipWidget = ButtonUtils.getChipWidget(getContext());
+
+        chipWidget.setText("#Daily");
+        chipWidget.setChipStrokeColor(ColorStateList.valueOf(getResources().getColor(R.color.red)));
+        relativeLayout.addView(chipWidget);
 
 //        relativeLayout.addView(circularImageView);
 
@@ -133,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         rangeSlider.addOnChangeListener(new RangeSlider.OnChangeListener() {
             @Override
             public void onValueChange(@NonNull RangeSlider slider, float value, boolean fromUser) {
-                SnackMaker.showSnackInfo(getContext(),Arrays.toString(slider.getValues().toArray(new Float[0])));
+                SnackMaker.showSnackInfo(getContext(), Arrays.toString(slider.getValues().toArray(new Float[0])));
             }
         });
 
@@ -141,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
 
-                ToastMaker.showCardInfo(getContext(),value+"");
+                ToastMaker.showCardInfo(getContext(), value + "");
 
 //                slider.setForm
             }

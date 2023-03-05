@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/drawable/chip_bg.xml" value="0.21041666666666667" />
         <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/drawable/ic_baseline_forward_10_24.xml" value="0.21041666666666667" />
         <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/drawable/ic_baseline_fullscreen_24.xml" value="0.21041666666666667" />
         <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.21041666666666667" />
@@ -11,6 +12,8 @@
         <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/drawable/ic_favorite.xml" value="0.21041666666666667" />
         <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/drawable/ic_favorite_outline.xml" value="0.21041666666666667" />
         <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/drawable/selector_favorite.xml" value="0.21041666666666667" />
+        <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/drawable/switch_thumb.xml" value="0.21041666666666667" />
+        <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/drawable/switch_track.xml" value="0.21041666666666667" />
         <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/layout/activity_views_slider.xml" value="0.19427083333333334" />
         <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/layout/custom_controller.xml" value="0.19427083333333334" />
         <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/layout/fragment_exo.xml" value="0.19427083333333334" />
@@ -19,6 +22,7 @@
         <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/layout/layout_bouncedotsfade.xml" value="0.19427083333333334" />
         <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/layout/layout_bouncedotsgrow.xml" value="0.19427083333333334" />
         <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/layout/layout_checkbox_like.xml" value="0.19427083333333334" />
+        <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/layout/layout_chips.xml" value="0.19427083333333334" />
         <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/layout/layout_circular_imageview.xml" value="0.19427083333333334" />
         <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/layout/layout_fabbutton.xml" value="0.19427083333333334" />
         <entry key="..\:/AndroidProjects/myAllActiveProjects/CommonAndroidUtilityProject/CommonAndroidUtility/src/main/res/layout/layout_lottie2.xml" value="0.11851851851851852" />
